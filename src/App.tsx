@@ -1,18 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import styles from './styles/App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="text-3xl font-bold underline text-red-600">
-          Simple React Typescript Tailwind Sample
-        </h1>
-      </header>
-    </div>
-  );
-}
+const App: FC = () => {
+    return (
+        <div>
+            <div className={styles.title}>CSS module works!</div>
+            <div
+                className={
+                    'border-[10px] border-solid border-red-800 rounded-full w-[200px] h-[200px] flex items-center justify-center text-center'
+                }
+            >
+                Tailwind works!
+            </div>
+        </div>
+    );
+};
 
 export default App;
