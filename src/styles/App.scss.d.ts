@@ -1,2 +1,2 @@
-export declare const subtitle: string;
+export declare const appContainer: string;
 export declare const title: string;
