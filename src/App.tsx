@@ -1,11 +1,28 @@
 import { FC } from 'react';
-import NavBar from './Components/NavBar';
+import NavBar, { Option as NavBarOption } from './Components/NavBar';
+import Settings from './Components/Settings';
 import styles from './styles/App.scss';
 
 const App: FC = () => {
+  const navBarOptions: NavBarOption[] = [
+    {
+      label: 'Home',
+    },
+    {
+      label: 'About',
+    },
+    {
+      label: 'Resume',
+    },
+    {
+      label: 'Projects',
+    },
+  ];
+
   return (
     <div className={styles.appContainer}>
-      <NavBar />
+      <NavBar options={navBarOptions} />
+      <Settings />
       <div>
         <div className={styles.title}>Ben Caro: Software Engineer</div>
         <div
