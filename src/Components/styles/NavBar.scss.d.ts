@@ -1,1 +1,2 @@
-export declare const container: string;
+export declare const navContainer: string;
+export declare const navLink: string;
