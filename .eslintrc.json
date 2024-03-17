@@ -26,7 +26,7 @@
         "quotes": ["error", "single"],
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/semi": [
-            "off"
+            "error"
         ],
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/consistent-type-imports": "off",

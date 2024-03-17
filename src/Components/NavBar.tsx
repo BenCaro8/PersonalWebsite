@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Settings from './Settings';
 import styles from './styles/NavBar.scss';
 
 export type Option = {
@@ -20,6 +21,7 @@ const NavBar: FC<Props> = ({ options }) => {
           </a>
         );
       })}
+      <Settings />
     </div>
   );
 };

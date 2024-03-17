@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import NavBar, { Option as NavBarOption } from './Components/NavBar';
-import Settings from './Components/Settings';
 import styles from './styles/App.scss';
 
 const App: FC = () => {
@@ -22,12 +21,11 @@ const App: FC = () => {
   return (
     <div className={styles.appContainer}>
       <NavBar options={navBarOptions} />
-      <Settings />
       <div>
         <div className={styles.title}>Ben Caro: Software Engineer</div>
         <div
           className={
-            'border-[10px] border-solid border-red-800 rounded-full w-[400px] h-[400px] flex items-center justify-center text-center text-4xl'
+            'border-[10px] border-solid border-blue-800 rounded-full w-[400px] h-[400px] flex items-center justify-center text-center text-4xl'
           }
         >
           Tailwind Works!
