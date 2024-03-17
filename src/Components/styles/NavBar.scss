@@ -13,8 +13,9 @@
     cursor: pointer;
     text-align: center;
     user-select: none;
+    color: white;
 
     &:hover {
-        color: green;
+        color: blue;
     }
 }
