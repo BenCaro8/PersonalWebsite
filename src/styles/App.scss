@@ -1,12 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
 .appContainer {
     position: absolute;
     min-width: 100%;
     min-height: 100%;
-    background-color: #181a1b;
+    background-color: var(--primary-bg-color);
+    display: flexbox;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .title {
-    background-color: blue;
-    font-size: xx-large;
-    color: white;
+    background-color: var(--primary-accent-color);
+    font-size: 60px;
+    color: #f0f0f0;
+    font-weight: 800;
+    font-family: "Gugi";
+    margin: 0 20px;
+    user-select: none;
+    align-self: center;
+}
+
+.wrap {
+    perspective-origin: 50% 50%;
+}
+
+.svg {
+    stroke: var(--primary-accent-color);
+    position: absolute;
+    bottom: -100vh;
+    transform-style: preserve-3d;
+}
+
+$total: 100;
+
+@for $i from 1 through $total {
+    $scale: random(2) - .4;
+
+    .svg:nth-child(#{$i}) {
+        left: random(120) * 1% - 20;
+        animation: raise#{$i} 6+random(15)+s linear infinite;
+        animation-delay: random(5) - 5 + s;
+        transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+        z-index: 7;
+        filter: blur($i - 6 + px);
+
+        @keyframes raise#{$i} {
+            to {
+                bottom: 150vh;
+                transform: scale(.3 * $i - .6) rotate(random(360) + deg);
+            }
+        }
+    }
 }

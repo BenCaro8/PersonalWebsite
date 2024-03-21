@@ -9,13 +9,15 @@
     height: 50%;
     width: auto;
     min-width: 50px;
-    margin: 0 10px;
+    margin: 0 20px;
     cursor: pointer;
     text-align: center;
     user-select: none;
-    color: white;
+    color: #f0f0f0;
+    font-family: system-ui;
+    font-weight: 500;
 
     &:hover {
-        color: blue;
+        color: var(--primary-accent-color);
     }
 }
