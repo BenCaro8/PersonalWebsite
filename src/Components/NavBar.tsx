@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Settings from './Settings';
+import Section from './Section';
 import styles from './styles/NavBar.scss';
 
 export type Option = {
@@ -14,14 +14,15 @@ type Props = {
 const NavBar: FC<Props> = ({ options }) => {
   return (
     <div className={styles.navContainer}>
-      {options.map((option, index) => {
-        return (
-          <a key={index} className={styles.navLink}>
-            {option.label}
-          </a>
-        );
-      })}
-      <Settings />
+      <Section>
+        {options.map((option, index) => {
+          return (
+            <a key={index} className={styles.navLink}>
+              {option.label}
+            </a>
+          );
+        })}
+      </Section>
     </div>
   );
 };
