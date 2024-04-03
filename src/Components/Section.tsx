@@ -1,10 +1,11 @@
 import { FC, ReactNode } from 'react';
 
 type Props = {
-  children: ReactNode;
+  children?: ReactNode;
   backgroundColor?: string;
   height?: number;
   zIndex?: number;
+  customStyle?: string;
 };
 
 const Section: FC<Props> = ({
@@ -12,10 +13,11 @@ const Section: FC<Props> = ({
   backgroundColor = 'primary-bg-color',
   height,
   zIndex,
+  customStyle: style = '',
 }) => {
   return (
     <section
-      className="w-full flex relative"
+      className={style ? style : 'w-full flex relative'}
       style={{
         height: height ? `${height}px` : '100%',
         backgroundColor: `var(--${backgroundColor})`,
