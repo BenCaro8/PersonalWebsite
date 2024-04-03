@@ -12,9 +12,15 @@ type Props = {
 };
 
 const NavBar: FC<Props> = ({ options }) => {
+  const navBarHeight = 50;
+
   return (
-    <div className={styles.navContainer}>
-      <Section>
+    <div>
+      <Section
+        customStyle={styles.navContainer}
+        height={navBarHeight}
+        zIndex={10}
+      >
         {options.map((option, index) => {
           return (
             <a key={index} className={styles.navLink}>
@@ -23,6 +29,7 @@ const NavBar: FC<Props> = ({ options }) => {
           );
         })}
       </Section>
+      <Section height={navBarHeight} />
     </div>
   );
 };

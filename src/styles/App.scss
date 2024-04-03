@@ -11,45 +11,29 @@
 }
 
 .title {
+    display: flex;
     background-color: var(--primary-accent-color);
     font-size: 60px;
     color: #f0f0f0;
-    font-weight: 800;
     font-family: "Gugi";
     margin: 0 20px;
     user-select: none;
     align-self: center;
+    text-wrap: balance;
+
+    @media (max-width:959px) {
+        display: relative;
+        font-size: 7.3vw;
+    }
 }
 
-.wrap {
-    perspective-origin: 50% 50%;
-}
+.selfie {
+    margin-left: auto;
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
 
-.svg {
-    stroke: var(--primary-accent-color);
-    position: absolute;
-    bottom: -100vh;
-    transform-style: preserve-3d;
-}
-
-$total: 100;
-
-@for $i from 1 through $total {
-    $scale: random(2) - .4;
-
-    .svg:nth-child(#{$i}) {
-        left: random(120) * 1% - 20;
-        animation: raise#{$i} 6+random(15)+s linear infinite;
-        animation-delay: random(5) - 5 + s;
-        transform: scale(.3 * $i - .6) rotate(random(360) + deg);
-        z-index: 7;
-        filter: blur($i - 6 + px);
-
-        @keyframes raise#{$i} {
-            to {
-                bottom: 150vh;
-                transform: scale(.3 * $i - .6) rotate(random(360) + deg);
-            }
-        }
+    @media (max-width:959px) {
+        max-width: 50%;
     }
 }
