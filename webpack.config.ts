@@ -29,11 +29,13 @@ const config: webpack.Configuration = {
     devServer: {
         hot: true,
         port: 3000,
+        historyApiFallback: true,
     },
     entry: './src/index.tsx', // codes will be inside src folder
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'index.js',
+        publicPath: '/',
         // more configurations: https://webpack.js.org/configuration/
     },
     plugins,

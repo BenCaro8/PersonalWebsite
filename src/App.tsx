@@ -1,22 +1,26 @@
 import { FC, useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar, { Option as NavBarOption } from './Components/NavBar';
-import AnimatedBackground from './Components/AnimatedBackground';
-import Section from './Components/Section';
-import Settings from './Components/Settings';
+import Footer from './Components/Footer';
+import Home from './Pages/Home';
 import styles from './styles/App.scss';
 
 const navBarOptions: NavBarOption[] = [
   {
     label: 'Home',
+    url: '/',
   },
   {
     label: 'About',
+    url: '/about',
   },
   {
     label: 'Resume',
+    url: '/resume',
   },
   {
     label: 'Projects',
+    url: '/projects',
   },
 ];
 
@@ -39,24 +43,16 @@ const App: FC = () => {
   const isMobile = width <= 959;
 
   return (
-    <div className={styles.appContainer}>
-      <NavBar options={navBarOptions} />
-      <Section backgroundColor="primary-accent-color" zIndex={8}>
-        <div className={styles.title}>
-          <span>Ben Caro: Software Engineer</span>
-        </div>
-        <img
-          src={`${
-            process.env.NODE_ENV === 'production' ? './public' : '.'
-          }/self.png`}
-          className={styles.selfie}
-        />
-      </Section>
-      <Section backgroundColor="primary-bg-color">
-        <Settings />
-      </Section>
-      <AnimatedBackground />
-    </div>
+    <BrowserRouter>
+      <div className={styles.appContainer}>
+        <NavBar options={navBarOptions} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/resume" element={<>Resume</>} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 };
 

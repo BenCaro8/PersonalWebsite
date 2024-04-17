@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './styles/AnimatedBackground.scss';
 
-const NavBar: FC = () => {
+const AnimatedBackground: FC = () => {
   return (
     <div className={styles.wrap}>
       <svg className={styles.svg} xmlns="http://www.w3.org/2000/svg">
@@ -79,4 +79,4 @@ const NavBar: FC = () => {
   );
 };
 
-export default NavBar;
+export default AnimatedBackground;

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import Section from './Section';
 import styles from './styles/NavBar.scss';
 
@@ -16,16 +17,16 @@ const NavBar: FC<Props> = ({ options }) => {
 
   return (
     <div>
-      <Section
-        customStyle={styles.navContainer}
-        height={navBarHeight}
-        zIndex={10}
-      >
+      <Section style={styles.navContainer} height={navBarHeight} zIndex={10}>
         {options.map((option, index) => {
           return (
-            <a key={index} className={styles.navLink}>
+            <Link
+              key={index}
+              className={styles.navLink}
+              to={option?.url || '/'}
+            >
               {option.label}
-            </a>
+            </Link>
           );
         })}
       </Section>
