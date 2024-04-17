@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --primary-bg-color: #2a292d;
-  --secondary-bg-color: #424344;
-  --primary-accent-color: #409a66;
+  --primary-bg-color: #111111;
+  --secondary-bg-color: #333333;
+  --primary-accent-color: #C56D00;
   --secondary-accent-color: #3034d2;
 }

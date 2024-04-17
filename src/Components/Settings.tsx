@@ -5,7 +5,7 @@ type ColorState = {
   [color: string]: string;
 };
 
-const NavBar: FC = () => {
+const Settings: FC = () => {
   const [colors, setColors] = useState<ColorState>({});
 
   const onColorChange = (color: ColorResult, property: string) => {
@@ -29,4 +29,4 @@ const NavBar: FC = () => {
   );
 };
 
-export default NavBar;
+export default Settings;

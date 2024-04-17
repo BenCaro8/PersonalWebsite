@@ -5,7 +5,7 @@ type Props = {
   backgroundColor?: string;
   height?: number;
   zIndex?: number;
-  customStyle?: string;
+  style?: string;
 };
 
 const Section: FC<Props> = ({
@@ -13,7 +13,7 @@ const Section: FC<Props> = ({
   backgroundColor = 'primary-bg-color',
   height,
   zIndex,
-  customStyle: style = '',
+  style = '',
 }) => {
   return (
     <section
