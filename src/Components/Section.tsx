@@ -6,20 +6,23 @@ type Props = {
   height?: number;
   zIndex?: number;
   style?: string;
+  fitContent?: boolean;
 };
 
 const Section: FC<Props> = ({
   children,
   backgroundColor = 'primary-bg-color',
-  height,
+  height: heightParam,
   zIndex,
   style = '',
 }) => {
+  const height = heightParam ? `${heightParam}px` : 'fit-content';
+
   return (
     <section
       className={style ? style : 'w-full flex relative'}
       style={{
-        height: height ? `${height}px` : '100%',
+        height,
         backgroundColor: `var(--${backgroundColor})`,
         zIndex: zIndex || 1,
       }}

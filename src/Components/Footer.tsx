@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Section from './Section';
 import styles from './styles/Footer.scss';
 
-const NavBar: FC = () => {
+const Footer: FC = () => {
   const footerHeight = 150;
 
   return (
@@ -13,9 +13,9 @@ const NavBar: FC = () => {
         zIndex={10}
         backgroundColor="primary-accent-color"
       />
-      <div style={{ height: footerHeight, marginTop: '50px' }} />
+      <Section height={footerHeight} />
     </>
   );
 };
 
-export default NavBar;
+export default Footer;

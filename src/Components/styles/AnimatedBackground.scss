@@ -2,9 +2,14 @@
   perspective-origin: 50% 50%;
 }
 
+.childZIndex * {
+  z-index: 10;
+  position: relative;
+}
+
 .svg {
   stroke: var(--primary-accent-color);
-  position: absolute;
+  position: fixed;
   bottom: -100vh;
   transform-style: preserve-3d;
   user-select: none;

@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.navBoxShadow {
+    box-shadow: 0px 2px 5px var(--primary-bg-color);
+}
+
 .navLink {
     height: 50%;
     width: auto;
