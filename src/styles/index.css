@@ -8,3 +8,7 @@
   --primary-accent-color: #C56D00;
   --secondary-accent-color: #3034d2;
 }
+
+#root {
+  height: 100vh;
+}

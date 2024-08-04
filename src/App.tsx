@@ -4,6 +4,7 @@ import NavBar, { Option as NavBarOption } from './Components/NavBar';
 import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import styles from './styles/App.scss';
+import Section from './Components/Section';
 
 const navBarOptions: NavBarOption[] = [
   {
@@ -48,7 +49,22 @@ const App: FC = () => {
         <NavBar options={navBarOptions} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/resume" element={<>Resume</>} />
+          <Route path="/about" element={<Section />} />
+          <Route
+            path="/resume"
+            element={
+              <Section>
+                <embed
+                  src={`${
+                    process.env.NODE_ENV === 'production' ? './public' : '.'
+                  }/Resume.pdf`}
+                  type="application/pdf"
+                  height="100%"
+                  width="100%"
+                />
+              </Section>
+            }
+          />
         </Routes>
         <Footer />
       </div>

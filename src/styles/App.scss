@@ -1,9 +1,8 @@
 .appContainer {
-    position: absolute;
     min-width: 100%;
     min-height: 100%;
     background-color: var(--primary-bg-color);
-    display: flexbox;
+    display: flex;
     flex-direction: column;
-    overflow: hidden;
+    position: relative;
 }

@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import styles from './styles/NavBar.scss';
+import classNames from 'classnames';
 
 export type Option = {
   label: string;
@@ -13,11 +14,22 @@ type Props = {
 };
 
 const NavBar: FC<Props> = ({ options }) => {
+  const [topOfPage, setTopOfPage] = useState(window.scrollY === 0);
   const navBarHeight = 50;
+
+  useEffect(() => {
+    window.onscroll = () => setTopOfPage(window.scrollY === 0);
+  }, []);
 
   return (
     <div>
-      <Section style={styles.navContainer} height={navBarHeight} zIndex={10}>
+      <Section
+        style={classNames(styles.navContainer, {
+          [styles.navBoxShadow]: !topOfPage,
+        })}
+        height={navBarHeight}
+        zIndex={10}
+      >
         {options.map((option, index) => {
           return (
             <Link

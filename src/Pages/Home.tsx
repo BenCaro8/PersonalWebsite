@@ -18,10 +18,12 @@ const App: FC = () => {
           className={styles.selfie}
         />
       </Section>
+
       <Section backgroundColor="primary-bg-color">
-        <Settings />
+        <AnimatedBackground>
+          <Settings />
+        </AnimatedBackground>
       </Section>
-      <AnimatedBackground />
     </>
   );
 };
