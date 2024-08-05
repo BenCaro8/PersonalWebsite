@@ -7,7 +7,7 @@ type Props = {
 
 const AnimatedBackground: FC<Props> = ({ children }) => {
   return (
-    <>
+    <div className="w-full">
       <div className={styles.childZIndex}>{children}</div>
       <div className={styles.wrap}>
         <svg className={styles.svg} xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@ const AnimatedBackground: FC<Props> = ({ children }) => {
           />
         </svg>
       </div>
-    </>
+    </div>
   );
 };
 

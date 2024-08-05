@@ -14,7 +14,7 @@ const Settings: FC = () => {
   };
 
   return (
-    <div className="float-right text-white mt-10 mb-10">
+    <div className="text-white mt-10 mb-10">
       Background Color:
       <ChromePicker
         color={colors['--primary-bg-color']}

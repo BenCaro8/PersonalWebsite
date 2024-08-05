@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import classNames from 'classnames';
 
 type Props = {
   children?: ReactNode;
@@ -20,11 +21,14 @@ const Section: FC<Props> = ({
 
   return (
     <section
-      className={style ? style : 'w-full flex relative'}
+      className={classNames({
+        [style]: !!style,
+        'w-full flex relative': !style,
+      })}
       style={{
         height,
         backgroundColor: `var(--${backgroundColor})`,
-        zIndex: zIndex || 1,
+        zIndex: zIndex || undefined,
       }}
     >
       <div className="mx-auto my-auto max-w-screen-2xl w-full px-5 flex">
