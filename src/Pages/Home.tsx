@@ -11,12 +11,7 @@ const App: FC = () => {
         <div className={styles.title}>
           <span>Ben Caro: Software Engineer</span>
         </div>
-        <img
-          src={`${
-            process.env.NODE_ENV === 'production' ? '/public' : ''
-          }/self.png`}
-          className={styles.selfie}
-        />
+        <img src="/public/self.png" className={styles.selfie} />
       </Section>
 
       <Section backgroundColor="primary-bg-color">
