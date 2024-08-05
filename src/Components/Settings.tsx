@@ -1,12 +1,31 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 
 type ColorState = {
   [color: string]: string;
 };
 
+const themeColors = [
+  '--primary-bg-color',
+  '--secondary-bg-color',
+  '--primary-accent-color',
+  '--secondary-accent-color',
+] as const;
+
 const Settings: FC = () => {
   const [colors, setColors] = useState<ColorState>({});
+
+  useEffect(() => {
+    const defaultColors: ColorState = {};
+
+    themeColors.map((themeColor) => {
+      defaultColors[themeColor] = getComputedStyle(
+        document.documentElement,
+      ).getPropertyValue(themeColor);
+    });
+
+    setColors(defaultColors);
+  }, []);
 
   const onColorChange = (color: ColorResult, property: string) => {
     setColors({ ...colors, [property]: color.hex });

@@ -28,7 +28,7 @@ const NavBar: FC<Props> = ({ options }) => {
           [styles.navBoxShadow]: !topOfPage,
         })}
         height={navBarHeight}
-        zIndex={10}
+        zIndex={100}
       >
         {options.map((option, index) => {
           return (
