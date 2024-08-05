@@ -58,7 +58,7 @@ const App: FC = () => {
                 <AnimatedBackground>
                   <img
                     src={`${
-                      process.env.NODE_ENV === 'production' ? './public' : '.'
+                      process.env.NODE_ENV === 'production' ? '../public' : '.'
                     }/Resume.jpg`}
                     className={styles.resume}
                   />
