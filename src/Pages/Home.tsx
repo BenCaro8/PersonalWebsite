@@ -13,7 +13,7 @@ const App: FC = () => {
         </div>
         <img
           src={`${
-            process.env.NODE_ENV === 'production' ? './public' : '.'
+            process.env.NODE_ENV === 'production' ? '/public' : ''
           }/self.png`}
           className={styles.selfie}
         />
