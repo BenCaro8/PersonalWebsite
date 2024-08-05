@@ -15,7 +15,8 @@ const plugins: webpack.WebpackPluginInstance[] = [
     }),
     new CopyPlugin({
         patterns: [
-            { from: "./public/*.png", to: "." } //to the dist root directory
+            { from: "./public/*.png", to: "." }, //to the dist root directory
+            { from: "./public/*.jpg", to: "." }
         ],
     }),
 ];
