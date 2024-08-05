@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar, { Option as NavBarOption } from './Components/NavBar';
+import NavBarMobile from './Components/Mobile/NavBarMobile';
 import Footer from './Components/Footer';
 import Section from './Components/Section';
 import Home from './Pages/Home';
@@ -28,10 +29,10 @@ const navBarOptions: NavBarOption[] = [
 ];
 
 const App: FC = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 959);
 
   const handleWindowSizeChange = () => {
-    setWidth(window.innerWidth);
+    setIsMobile(window.innerWidth <= 959);
   };
 
   useEffect(() => {
@@ -41,9 +42,13 @@ const App: FC = () => {
     };
   }, []);
 
-  // TODO: Add this to context or something better...
+  // TODO: Create and add Mobile Component
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isMobile = width <= 959;
+  const NavBarComponent = isMobile ? (
+    <NavBarMobile options={navBarOptions} />
+  ) : (
+    <NavBar options={navBarOptions} />
+  );
 
   return (
     <BrowserRouter>
