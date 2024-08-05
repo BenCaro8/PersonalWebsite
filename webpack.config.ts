@@ -15,8 +15,8 @@ const plugins: webpack.WebpackPluginInstance[] = [
     }),
     new CopyPlugin({
         patterns: [
-            { from: "./public/*.png", to: "." }, //to the dist root directory
-            { from: "./public/*.jpg", to: "." }
+            { from: './public/*.png', to: '.' }, //to the dist root directory
+            { from: './public/*.jpg', to: '.' },
         ],
     }),
 ];
@@ -89,11 +89,7 @@ const config: webpack.Configuration = {
             },
             {
                 test: /\.css$/i, // separated out as tailwind uses global scope not modules...
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                ],
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
         ],
     },
