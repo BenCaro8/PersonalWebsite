@@ -4,6 +4,7 @@ import NavBar, { Option as NavBarOption } from './Components/NavBar';
 import Footer from './Components/Footer';
 import Section from './Components/Section';
 import Home from './Pages/Home';
+import InProgress from './Pages/InProgress';
 import AnimatedBackground from './Components/AnimatedBackground';
 import styles from './styles/App.scss';
 
@@ -50,7 +51,7 @@ const App: FC = () => {
         <NavBar options={navBarOptions} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Section />} />
+          <Route path="/about" element={<InProgress />} />
           <Route
             path="/resume"
             element={
@@ -61,6 +62,7 @@ const App: FC = () => {
               </Section>
             }
           />
+          <Route path="/projects" element={<InProgress />} />
         </Routes>
         <Footer />
       </div>

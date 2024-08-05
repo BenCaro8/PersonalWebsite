@@ -7,7 +7,8 @@ type Props = {
   height?: number;
   zIndex?: number;
   style?: string;
-  fitContent?: boolean;
+  center?: boolean;
+  flexCol?: boolean;
 };
 
 const Section: FC<Props> = ({
@@ -16,6 +17,8 @@ const Section: FC<Props> = ({
   height: heightParam,
   zIndex,
   style = '',
+  center = false,
+  flexCol = false,
 }) => {
   const height = heightParam ? `${heightParam}px` : 'fit-content';
 
@@ -31,7 +34,13 @@ const Section: FC<Props> = ({
         zIndex: zIndex || undefined,
       }}
     >
-      <div className="mx-auto my-auto max-w-screen-2xl w-full px-5 flex">
+      <div
+        className={classNames(
+          'mx-auto my-auto max-w-screen-2xl w-full px-5 flex',
+          { 'place-content-center': center },
+          { 'flex-col': flexCol },
+        )}
+      >
         {children}
       </div>
     </section>

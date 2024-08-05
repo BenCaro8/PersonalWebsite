@@ -1,10 +1,10 @@
-.wrap {
-  perspective-origin: 50% 50%;
-}
-
 .childZIndex * {
   z-index: 10;
   position: relative;
+}
+
+.svgWrap {
+  perspective-origin: 50% 50%;
 }
 
 .svg {

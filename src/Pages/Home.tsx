@@ -4,10 +4,10 @@ import Section from '../Components/Section';
 import Settings from '../Components/Settings';
 import styles from './styles/Home.scss';
 
-const App: FC = () => {
+const Home: FC = () => {
   return (
     <>
-      <Section backgroundColor="primary-accent-color" zIndex={8}>
+      <Section backgroundColor="primary-accent-color" zIndex={10}>
         <div className={styles.title}>
           <span>Ben Caro: Software Engineer</span>
         </div>
@@ -23,4 +23,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default Home;
