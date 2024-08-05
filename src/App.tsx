@@ -2,9 +2,10 @@ import { FC, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar, { Option as NavBarOption } from './Components/NavBar';
 import Footer from './Components/Footer';
-import Home from './Pages/Home';
-import styles from './styles/App.scss';
 import Section from './Components/Section';
+import Home from './Pages/Home';
+import AnimatedBackground from './Components/AnimatedBackground';
+import styles from './styles/App.scss';
 
 const navBarOptions: NavBarOption[] = [
   {
@@ -54,14 +55,14 @@ const App: FC = () => {
             path="/resume"
             element={
               <Section>
-                <embed
-                  src={`${
-                    process.env.NODE_ENV === 'production' ? './public' : '.'
-                  }/Resume.pdf`}
-                  type="application/pdf"
-                  height="100%"
-                  width="100%"
-                />
+                <AnimatedBackground>
+                  <img
+                    src={`${
+                      process.env.NODE_ENV === 'production' ? './public' : '.'
+                    }/Resume.jpg`}
+                    className={styles.resume}
+                  />
+                </AnimatedBackground>
               </Section>
             }
           />
