@@ -54,11 +54,9 @@ const AnimatedBackground: FC<Props> = ({ children }) => {
         </svg>
       );
       svgs.push(svg);
-      const styleSheet = document.styleSheets[0];
-      (styleSheet as CSSStyleSheet).insertRule(
-        keyframes,
-        (styleSheet as CSSStyleSheet).cssRules.length,
-      );
+      const styleElement = document.createElement('style');
+      styleElement.textContent = keyframes;
+      document.head.appendChild(styleElement);
     }
     return svgs;
   };
@@ -66,8 +64,6 @@ const AnimatedBackground: FC<Props> = ({ children }) => {
   useEffect(() => {
     setSvgElements(generateSvgsForAnim(15));
   }, []);
-
-  console.log(svgElements);
 
   return (
     <div className="w-full">
