@@ -17,6 +17,7 @@ const plugins: webpack.WebpackPluginInstance[] = [
         patterns: [
             { from: './public/*.png', to: '.' }, //to the dist root directory
             { from: './public/*.jpg', to: '.' },
+            { from: './public/*.pdf', to: '.' },
         ],
     }),
 ];

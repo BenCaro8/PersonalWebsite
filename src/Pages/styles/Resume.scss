@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
+.title {
+    display: flex;
+    background-color: var(--primary-accent-color);
+    font-size: 30px;
+    color: #f0f0f0;
+    font-family: "Gugi";
+    margin: 0 20px;
+    user-select: none;
+    align-self: center;
+    text-wrap: balance;
+
+    @media (max-width:959px) {
+        display: relative;
+        font-size: 5.5vw;
+    }
+}
+
+.resume {
+    margin: 50px auto;
+    max-width: 100%;
+    height: auto;
+
+    @media (max-width:959px) {
+        max-width: 100%;
+    }
+}
