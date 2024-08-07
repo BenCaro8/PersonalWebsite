@@ -1,11 +1,7 @@
 import { FC, useState, useEffect, ReactNode } from 'react';
 import styles from './styles/AnimatedBackground.scss';
 
-type Props = {
-  children?: ReactNode;
-};
-
-const AnimatedBackground: FC<Props> = ({ children }) => {
+const AnimatedBackground: FC = () => {
   const [svgElements, setSvgElements] = useState<ReactNode[]>([]);
 
   const generateSvgsForAnim = (num: number): ReactNode[] => {
@@ -67,10 +63,17 @@ const AnimatedBackground: FC<Props> = ({ children }) => {
 
   return (
     <div className="w-full">
-      <div className={styles.childZIndex}>{children}</div>
       <div className={styles.svgWrap}>{svgElements.map((elem) => elem)}</div>
     </div>
   );
+};
+
+type Props = {
+  children?: ReactNode;
+};
+
+export const ZIndexWrap: FC<Props> = ({ children }) => {
+  return <div className={styles.childZIndex}>{children}</div>;
 };
 
 export default AnimatedBackground;

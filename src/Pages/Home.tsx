@@ -1,5 +1,7 @@
 import { FC } from 'react';
-import AnimatedBackground from '../Components/AnimatedBackground';
+import AnimatedBackground, {
+  ZIndexWrap,
+} from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import Settings from '../Components/Settings';
 import styles from './styles/Home.scss';
@@ -15,10 +17,11 @@ const Home: FC = () => {
       </Section>
 
       <Section backgroundColor="primary-bg-color">
-        <AnimatedBackground>
+        <ZIndexWrap>
           <Settings />
-        </AnimatedBackground>
+        </ZIndexWrap>
       </Section>
+      <AnimatedBackground />
     </>
   );
 };
