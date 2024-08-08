@@ -2,8 +2,12 @@ import { FC } from 'react';
 import Section from './Section';
 import styles from './styles/Footer.scss';
 
-const Footer: FC = () => {
-  const footerHeight = 150;
+type Props = {
+  isMobile: boolean;
+};
+
+const Footer: FC<Props> = ({ isMobile }) => {
+  const footerHeight = isMobile ? 100 : 150;
 
   return (
     <>

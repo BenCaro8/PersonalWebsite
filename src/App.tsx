@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Resume from './Pages/Resume';
 import InProgress from './Pages/InProgress';
 import styles from './styles/App.scss';
+import Settings from './Pages/Settings';
 
 const navBarOptions: NavBarOption[] = [
   {
@@ -58,8 +59,9 @@ const App: FC = () => {
           <Route path="/about" element={<InProgress />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/projects" element={<InProgress />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
-        <Footer />
+        <Footer isMobile={isMobile} />
       </div>
     </BrowserRouter>
   );
