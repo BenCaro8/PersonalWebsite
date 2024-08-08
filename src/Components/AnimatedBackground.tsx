@@ -1,11 +1,18 @@
 import { FC, useState, useEffect, ReactNode } from 'react';
 import styles from './styles/AnimatedBackground.scss';
 
-const AnimatedBackground: FC = () => {
+type Props = {
+  numShapes?: number;
+};
+
+const AnimatedBackground: FC<Props> = ({ numShapes = 15 }) => {
   const [svgElements, setSvgElements] = useState<ReactNode[]>([]);
 
-  const generateSvgsForAnim = (num: number): ReactNode[] => {
+  const generateSvgsForAnim = (
+    num: number,
+  ): [ReactNode[], HTMLStyleElement] => {
     const svgs = [];
+    const styleElement = document.createElement('style');
     for (let i = 0; i < num; i++) {
       const animationName = `raise${i}`;
       const scale = Math.floor(Math.random() * 2) - 0.4;
@@ -50,16 +57,20 @@ const AnimatedBackground: FC = () => {
         </svg>
       );
       svgs.push(svg);
-      const styleElement = document.createElement('style');
-      styleElement.textContent = keyframes;
-      document.head.appendChild(styleElement);
+      styleElement.textContent += keyframes;
     }
-    return svgs;
+    document.head.appendChild(styleElement);
+    return [svgs, styleElement];
   };
 
   useEffect(() => {
-    setSvgElements(generateSvgsForAnim(15));
-  }, []);
+    const [svgs, styleElement] = generateSvgsForAnim(numShapes);
+    setSvgElements(svgs);
+
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, [numShapes]);
 
   return (
     <div className="w-full">
@@ -68,11 +79,11 @@ const AnimatedBackground: FC = () => {
   );
 };
 
-type Props = {
+type ZIndexWrapProps = {
   children?: ReactNode;
 };
 
-export const ZIndexWrap: FC<Props> = ({ children }) => {
+export const ZIndexWrap: FC<ZIndexWrapProps> = ({ children }) => {
   return <div className={styles.childZIndex}>{children}</div>;
 };
 

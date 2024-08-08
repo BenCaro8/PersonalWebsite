@@ -1,9 +1,6 @@
 import { FC } from 'react';
-import AnimatedBackground, {
-  ZIndexWrap,
-} from '../Components/AnimatedBackground';
+import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
-import Settings from '../Components/Settings';
 import styles from './styles/Home.scss';
 
 const Home: FC = () => {
@@ -16,11 +13,7 @@ const Home: FC = () => {
         <img src="/public/self.png" className={styles.selfie} />
       </Section>
 
-      <Section backgroundColor="primary-bg-color">
-        <ZIndexWrap>
-          <Settings />
-        </ZIndexWrap>
-      </Section>
+      <Section backgroundColor="primary-bg-color"></Section>
       <AnimatedBackground />
     </>
   );
