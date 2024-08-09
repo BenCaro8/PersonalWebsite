@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar, { Option as NavBarOption } from './Components/NavBar';
 import NavBarMobile from './Components/Mobile/NavBarMobile';
@@ -6,8 +6,10 @@ import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Resume from './Pages/Resume';
 import InProgress from './Pages/InProgress';
-import styles from './styles/App.scss';
 import Settings from './Pages/Settings';
+import { useAppSelector, useAppDispatch } from './store';
+import { setIsMobile } from './stores/settings';
+import styles from './styles/App.scss';
 
 const navBarOptions: NavBarOption[] = [
   {
@@ -29,10 +31,14 @@ const navBarOptions: NavBarOption[] = [
 ];
 
 const App: FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 959);
+  const isMobile = useAppSelector((state) => state.settings.isMobile);
+  const dispatch = useAppDispatch();
 
   const handleWindowSizeChange = () => {
-    setIsMobile(window.innerWidth <= 959);
+    const newSizeIsMobile = window.innerWidth <= 959;
+    if (isMobile != newSizeIsMobile) {
+      dispatch(setIsMobile(newSizeIsMobile));
+    }
   };
 
   useEffect(() => {
@@ -40,7 +46,7 @@ const App: FC = () => {
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
-  }, []);
+  }, [isMobile]);
 
   // TODO: Create and add Mobile Component
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -61,7 +67,7 @@ const App: FC = () => {
           <Route path="/projects" element={<InProgress />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
-        <Footer isMobile={isMobile} />
+        <Footer />
       </div>
     </BrowserRouter>
   );

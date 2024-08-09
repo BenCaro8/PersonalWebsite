@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import Section from './Section';
+import { useAppSelector } from '../store';
 import styles from './styles/Footer.scss';
 
-type Props = {
-  isMobile: boolean;
-};
-
-const Footer: FC<Props> = ({ isMobile }) => {
+const Footer: FC = () => {
+  const isMobile = useAppSelector((state) => state.settings.isMobile);
   const footerHeight = isMobile ? 100 : 150;
 
   return (

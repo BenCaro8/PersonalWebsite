@@ -17,8 +17,7 @@ const AnimatedBackground: FC = () => {
       const left = `${Math.floor(Math.random() * 120) - 20}%`;
       const animation = `${animationName} ${
         6 + Math.floor(Math.random() * 15)
-      }s linear infinite`;
-      const animationDelay = `${Math.floor(Math.random() * 5) - 5}s`;
+      }s linear ${Math.floor(Math.random() * 5) - 5}s infinite`;
       const transform = `scale(${0.3 * (i % 10) - 0.6}) rotate(${Math.floor(
         Math.random() * 360,
       )}deg)`;
@@ -42,7 +41,6 @@ const AnimatedBackground: FC = () => {
             scale,
             left,
             animation,
-            animationDelay,
             transform,
             filter,
           }}

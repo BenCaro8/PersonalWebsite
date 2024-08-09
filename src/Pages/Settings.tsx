@@ -9,6 +9,7 @@ import { ColorState, setColors, setNumShapes } from '../stores/settings';
 import styles from './styles/Settings.scss';
 
 const Settings: FC = () => {
+  const isMobile = useAppSelector((state) => state.settings.isMobile);
   const colors = useAppSelector((state) => state.settings.colors);
   const numShapes = useAppSelector((state) => state.settings.numShapes);
   const [inputValue, setInputValue] = useState(numShapes.toString());
@@ -21,7 +22,10 @@ const Settings: FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    if (/^\d*$/.test(value) && (parseInt(value) || 1) <= 100) {
+    if (
+      /^\d*$/.test(value) &&
+      (parseInt(value) || 1) <= (isMobile ? 35 : 100)
+    ) {
       setInputValue(value);
     }
   };

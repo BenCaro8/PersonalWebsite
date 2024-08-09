@@ -18,11 +18,13 @@ const getInitialColors = () => {
 };
 
 type State = {
+  isMobile: boolean;
   colors: Partial<ColorState>;
   numShapes: number;
 };
 
 const initialState: State = {
+  isMobile: window.innerWidth <= 959,
   colors: getInitialColors(),
   numShapes: 15,
 };
@@ -31,6 +33,9 @@ export const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
+    setIsMobile: (state, action: PayloadAction<boolean>) => {
+      state.isMobile = action.payload;
+    },
     setColors: (state, action: PayloadAction<Partial<ColorState>>) => {
       state.colors = { ...state.colors, ...action.payload };
     },
@@ -40,6 +45,6 @@ export const settingsSlice = createSlice({
   },
 });
 
-export const { setColors, setNumShapes } = settingsSlice.actions;
+export const { setIsMobile, setColors, setNumShapes } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
