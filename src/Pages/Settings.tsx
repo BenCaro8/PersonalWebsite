@@ -5,13 +5,13 @@ import AnimatedBackground, {
 } from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import { useAppSelector, useAppDispatch } from '../store';
-import { ColorState, setColors } from '../stores/settings';
+import { ColorState, setColors, setNumShapes } from '../stores/settings';
 import styles from './styles/Settings.scss';
 
 const Settings: FC = () => {
-  const [numShapes, setNumShapes] = useState(15);
-  const [inputValue, setInputValue] = useState(numShapes.toString());
   const colors = useAppSelector((state) => state.settings.colors);
+  const numShapes = useAppSelector((state) => state.settings.numShapes);
+  const [inputValue, setInputValue] = useState(numShapes.toString());
   const dispatch = useAppDispatch();
 
   const onColorChange = (color: ColorResult, property: keyof ColorState) => {
@@ -21,7 +21,7 @@ const Settings: FC = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    if (/^\d*$/.test(value) && (parseInt(value) || 1) < 300) {
+    if (/^\d*$/.test(value) && (parseInt(value) || 1) <= 100) {
       setInputValue(value);
     }
   };
@@ -29,7 +29,7 @@ const Settings: FC = () => {
   const handleApplyClick = () => {
     const newCount = parseInt(inputValue);
     if (!isNaN(newCount)) {
-      setNumShapes(newCount);
+      dispatch(setNumShapes(newCount));
     }
   };
 
@@ -77,7 +77,7 @@ const Settings: FC = () => {
           </div>
         </ZIndexWrap>
       </Section>
-      <AnimatedBackground numShapes={numShapes} />
+      <AnimatedBackground />
     </>
   );
 };

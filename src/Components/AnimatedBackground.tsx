@@ -1,12 +1,10 @@
 import { FC, useState, useEffect, ReactNode } from 'react';
+import { useAppSelector } from '../store';
 import styles from './styles/AnimatedBackground.scss';
 
-type Props = {
-  numShapes?: number;
-};
-
-const AnimatedBackground: FC<Props> = ({ numShapes = 15 }) => {
+const AnimatedBackground: FC = () => {
   const [svgElements, setSvgElements] = useState<ReactNode[]>([]);
+  const numShapes = useAppSelector((state) => state.settings.numShapes);
 
   const generateSvgsForAnim = (
     num: number,

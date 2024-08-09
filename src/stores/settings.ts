@@ -19,10 +19,12 @@ const getInitialColors = () => {
 
 type State = {
   colors: Partial<ColorState>;
+  numShapes: number;
 };
 
 const initialState: State = {
   colors: getInitialColors(),
+  numShapes: 15,
 };
 
 export const settingsSlice = createSlice({
@@ -32,9 +34,12 @@ export const settingsSlice = createSlice({
     setColors: (state, action: PayloadAction<Partial<ColorState>>) => {
       state.colors = { ...state.colors, ...action.payload };
     },
+    setNumShapes: (state, action: PayloadAction<number>) => {
+      state.numShapes = action.payload;
+    },
   },
 });
 
-export const { setColors } = settingsSlice.actions;
+export const { setColors, setNumShapes } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
