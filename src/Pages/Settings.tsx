@@ -1,35 +1,21 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import AnimatedBackground, {
   ZIndexWrap,
 } from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
-import { themeColors } from '../Utils/types';
+import { useAppSelector, useAppDispatch } from '../store';
+import { ColorState, setColors } from '../stores/settings';
 import styles from './styles/Settings.scss';
-
-type ColorState = {
-  [color in (typeof themeColors)[number]]?: string;
-};
 
 const Settings: FC = () => {
   const [numShapes, setNumShapes] = useState(15);
-  const [colors, setColors] = useState<ColorState>({});
   const [inputValue, setInputValue] = useState(numShapes.toString());
+  const colors = useAppSelector((state) => state.settings.colors);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const defaultColors: ColorState = {};
-
-    themeColors.map((themeColor) => {
-      defaultColors[themeColor] = getComputedStyle(
-        document.documentElement,
-      ).getPropertyValue(themeColor);
-    });
-
-    setColors(defaultColors);
-  }, []);
-
-  const onColorChange = (color: ColorResult, property: string) => {
-    setColors({ ...colors, [property]: color.hex });
+  const onColorChange = (color: ColorResult, property: keyof ColorState) => {
+    dispatch(setColors({ [property]: color.hex }));
     document.documentElement.style.setProperty(property, color.hex);
   };
 
@@ -59,12 +45,15 @@ const Settings: FC = () => {
       <Section>
         <ZIndexWrap>
           <div className="text-white mt-10 mb-10">
-            Background Color:
+            <div className="text-white mb-2">Background Color:</div>
             <ChromePicker
               color={colors['--primary-bg-color']}
               onChange={(color) => onColorChange(color, '--primary-bg-color')}
             />
-            Accent Color:
+          </div>
+          <div className="text-white mt-10 mb-10">
+            <div className="text-white mb-2">Accent Color:</div>
+
             <ChromePicker
               color={colors['--primary-accent-color']}
               onChange={(color) =>

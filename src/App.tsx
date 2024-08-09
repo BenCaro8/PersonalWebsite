@@ -51,7 +51,7 @@ const App: FC = () => {
   );
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <div className={styles.appContainer}>
         <NavBar options={navBarOptions} />
         <Routes>

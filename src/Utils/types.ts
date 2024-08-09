@@ -7,4 +7,4 @@ export const themeColors = [
 
 type RemovePrefix<S> = S extends `--${infer T}` ? T : never;
 
-export type ThemeColors = RemovePrefix<typeof themeColors[number]>;
+export type ThemeColor = RemovePrefix<(typeof themeColors)[number]>;

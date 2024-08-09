@@ -1,9 +1,10 @@
 import { FC, ReactNode } from 'react';
+import { ThemeColor } from '../Utils/types';
 import classNames from 'classnames';
 
 type Props = {
   children?: ReactNode;
-  backgroundColor?: string;
+  backgroundColor?: ThemeColor;
   height?: number;
   zIndex?: number;
   style?: string;

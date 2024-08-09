@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 export type Option = {
   label: string;
-  url?: string;
+  url: string;
 };
 
 type Props = {
@@ -32,11 +32,7 @@ const NavBar: FC<Props> = ({ options }) => {
       >
         {options.map((option, index) => {
           return (
-            <Link
-              key={index}
-              className={styles.navLink}
-              to={option?.url || '/'}
-            >
+            <Link key={index} className={styles.navLink} to={option.url}>
               {option.label}
             </Link>
           );

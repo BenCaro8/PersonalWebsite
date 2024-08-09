@@ -12,8 +12,6 @@ const Home: FC = () => {
         </div>
         <img src="/public/self.png" className={styles.selfie} />
       </Section>
-
-      <Section backgroundColor="primary-bg-color"></Section>
       <AnimatedBackground />
     </>
   );
