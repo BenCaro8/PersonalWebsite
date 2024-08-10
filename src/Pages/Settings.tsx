@@ -1,11 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import AnimatedBackground, {
   ZIndexWrap,
 } from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import { useAppSelector, useAppDispatch } from '../store';
-import { ColorState, setColors, setNumShapes } from '../stores/settings';
+import {
+  setColors,
+  resetToDefaultTheme,
+  setNumShapes,
+} from '../stores/settings';
+import { ColorState } from '../Utils/helpers';
 import styles from './styles/Settings.scss';
 
 const Settings: FC = () => {
@@ -17,7 +22,6 @@ const Settings: FC = () => {
 
   const onColorChange = (color: ColorResult, property: keyof ColorState) => {
     dispatch(setColors({ [property]: color.hex }));
-    document.documentElement.style.setProperty(property, color.hex);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,10 @@ const Settings: FC = () => {
       dispatch(setNumShapes(newCount));
     }
   };
+
+  useEffect(() => {
+    setInputValue(numShapes.toString());
+  }, [numShapes]);
 
   return (
     <>
@@ -77,6 +85,14 @@ const Settings: FC = () => {
             />
             <button onClick={handleApplyClick} className="text-white ml-2">
               Apply
+            </button>
+          </div>
+          <div className="mb-10">
+            <button
+              onClick={() => dispatch(resetToDefaultTheme())}
+              className="text-white ml-2"
+            >
+              Reset
             </button>
           </div>
         </ZIndexWrap>

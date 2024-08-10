@@ -8,7 +8,11 @@ import Resume from './Pages/Resume';
 import InProgress from './Pages/InProgress';
 import Settings from './Pages/Settings';
 import { useAppSelector, useAppDispatch } from './store';
-import { setIsMobile } from './stores/settings';
+import {
+  setIsMobile,
+  setDefaultColors,
+  setInitialTheme,
+} from './stores/settings';
 import styles from './styles/App.scss';
 
 const navBarOptions: NavBarOption[] = [
@@ -47,6 +51,11 @@ const App: FC = () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, [isMobile]);
+
+  useEffect(() => {
+    dispatch(setDefaultColors());
+    dispatch(setInitialTheme());
+  }, []);
 
   // TODO: Create and add Mobile Component
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
