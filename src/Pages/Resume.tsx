@@ -8,19 +8,17 @@ import styles from './styles/Resume.scss';
 const Resume: FC = () => {
   return (
     <>
-      <ZIndexWrap>
-        <Section backgroundColor="primary-accent-color" center>
-          <a className={styles.title} href="/public/Resume.pdf" download>
-            Download Resume as PDF
-          </a>
-        </Section>
-      </ZIndexWrap>
+      <Section backgroundColor="primary-accent-color" center>
+        <a className={styles.title} href="/public/Resume.pdf" download>
+          Download Resume as PDF
+        </a>
+      </Section>
       <Section center>
         <ZIndexWrap>
           <img src="/public/Resume.jpg" className={styles.resume} />
         </ZIndexWrap>
+        <AnimatedBackground />
       </Section>
-      <AnimatedBackground />
     </>
   );
 };

@@ -12,7 +12,7 @@ const Footer: FC = () => {
       <Section
         style={styles.footerContainer}
         height={footerHeight}
-        zIndex={10}
+        zIndex={100}
         backgroundColor="primary-accent-color"
         center
       >
@@ -42,7 +42,7 @@ const Footer: FC = () => {
         </a>
         <p>© 2024 Ben Caro</p>
       </Section>
-      <Section height={footerHeight} />
+      <Section height={footerHeight} zIndex={-1} />
     </>
   );
 };

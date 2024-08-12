@@ -48,11 +48,9 @@ const Settings: FC = () => {
   return (
     <>
       <Section backgroundColor="primary-accent-color" height={200}>
-        <ZIndexWrap>
-          <div className={styles.title}>
-            <span>Themes:</span>
-          </div>
-        </ZIndexWrap>
+        <div className={styles.title}>
+          <span>Themes:</span>
+        </div>
       </Section>
       <Section>
         <ZIndexWrap>
@@ -70,6 +68,16 @@ const Settings: FC = () => {
               color={colors['--primary-accent-color']}
               onChange={(color) =>
                 onColorChange(color, '--primary-accent-color')
+              }
+            />
+          </div>
+          <div className="text-white mt-10 mb-10">
+            <div className="text-white mb-2">Second Accent Color:</div>
+
+            <ChromePicker
+              color={colors['--secondary-accent-color']}
+              onChange={(color) =>
+                onColorChange(color, '--secondary-accent-color')
               }
             />
           </div>
@@ -96,8 +104,8 @@ const Settings: FC = () => {
             </button>
           </div>
         </ZIndexWrap>
+        <AnimatedBackground />
       </Section>
-      <AnimatedBackground />
     </>
   );
 };

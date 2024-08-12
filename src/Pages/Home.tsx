@@ -6,7 +6,7 @@ import styles from './styles/Home.scss';
 const Home: FC = () => {
   return (
     <>
-      <Section backgroundColor="primary-accent-color" zIndex={10}>
+      <Section backgroundColor="primary-accent-color">
         <div className={styles.title}>
           <span>Ben Caro: Software Engineer</span>
         </div>

@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { ThemeColor } from '../Utils/types';
 import classNames from 'classnames';
+import styles from './styles/Section.scss';
 
 type Props = {
   children?: ReactNode;
@@ -16,7 +17,7 @@ const Section: FC<Props> = ({
   children,
   backgroundColor = 'primary-bg-color',
   height: heightParam,
-  zIndex,
+  zIndex = 10,
   style = '',
   center = false,
   flexCol = false,
@@ -27,17 +28,17 @@ const Section: FC<Props> = ({
     <section
       className={classNames({
         [style]: !!style,
-        'w-full flex relative': !style,
+        [styles.section]: !style,
       })}
       style={{
         height,
         backgroundColor: `var(--${backgroundColor})`,
-        zIndex: zIndex || undefined,
+        zIndex,
       }}
     >
       <div
         className={classNames(
-          'mx-auto my-auto max-w-screen-2xl w-full px-5 flex',
+          styles.contentWrapper,
           { 'place-content-center': center },
           { 'flex-col': flexCol },
         )}

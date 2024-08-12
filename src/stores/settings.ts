@@ -44,8 +44,9 @@ export const settingsSlice = createSlice({
     },
     resetToDefaultTheme: (state) => {
       writeColorsToLocalStorage(state.defaultColors);
+      writeNumShapesToLocalStorage(initialState.numShapes);
       applyColors(state.defaultColors);
-      state.numShapes = 15;
+      state.numShapes = initialState.numShapes;
       state.colors = state.defaultColors;
     },
     setNumShapes: (state, action: PayloadAction<number>) => {

@@ -3,6 +3,8 @@ import { useAppSelector } from '../store';
 import { shapes, getSvg } from '../Utils/svgs';
 import styles from './styles/AnimatedBackground.scss';
 
+const colors = ['red', 'purple', 'blue', 'green', 'yellow', 'white'];
+
 const AnimatedBackground: FC = () => {
   const [svgElements, setSvgElements] = useState<ReactNode[]>([]);
   const numShapes = useAppSelector((state) => state.settings.numShapes);
@@ -23,6 +25,7 @@ const AnimatedBackground: FC = () => {
         Math.random() * 360,
       )}deg)`;
       const filter = `blur(${(i % 10) - 6}px)`;
+      const zIndex = 9 - (i % 10);
       const keyframes = `
         @keyframes ${animationName} {
           to {
@@ -43,8 +46,9 @@ const AnimatedBackground: FC = () => {
           animation,
           transform,
           filter,
+          zIndex,
         },
-        'primary-accent-color',
+        colors[Math.floor(Math.random() * colors.length)],
       );
       svgs.push(svg);
       styleElement.textContent += keyframes;
@@ -63,9 +67,7 @@ const AnimatedBackground: FC = () => {
   }, [numShapes]);
 
   return (
-    <div className="w-full">
-      <div className={styles.svgWrap}>{svgElements.map((elem) => elem)}</div>
-    </div>
+    <div className="w-full contents">{svgElements.map((elem) => elem)}</div>
   );
 };
 
