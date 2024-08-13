@@ -11,6 +11,7 @@ type Props = {
   style?: string;
   center?: boolean;
   flexCol?: boolean;
+  showAnimatedBackground?: boolean;
 };
 
 const Section: FC<Props> = ({
@@ -21,6 +22,7 @@ const Section: FC<Props> = ({
   style = '',
   center = false,
   flexCol = false,
+  showAnimatedBackground = false,
 }) => {
   const height = heightParam ? `${heightParam}px` : 'fit-content';
 
@@ -33,15 +35,14 @@ const Section: FC<Props> = ({
       style={{
         height,
         backgroundColor: `var(--${backgroundColor})`,
-        zIndex,
+        zIndex: showAnimatedBackground ? 'auto' : zIndex,
       }}
     >
       <div
-        className={classNames(
-          styles.contentWrapper,
-          { 'place-content-center': center },
-          { 'flex-col': flexCol },
-        )}
+        className={classNames(styles.contentWrapper, {
+          'place-content-center': center,
+          'flex-col': flexCol,
+        })}
       >
         {children}
       </div>

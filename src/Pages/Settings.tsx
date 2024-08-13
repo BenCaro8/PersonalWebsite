@@ -1,8 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
-import AnimatedBackground, {
-  ZIndexWrap,
-} from '../Components/AnimatedBackground';
+import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import { useAppSelector, useAppDispatch } from '../store';
 import {
@@ -52,60 +50,56 @@ const Settings: FC = () => {
           <span>Themes:</span>
         </div>
       </Section>
-      <Section>
-        <ZIndexWrap>
-          <div className="text-white mt-10 mb-10">
-            <div className="text-white mb-2">Background Color:</div>
-            <ChromePicker
-              color={colors['--primary-bg-color']}
-              onChange={(color) => onColorChange(color, '--primary-bg-color')}
-            />
-          </div>
-          <div className="text-white mt-10 mb-10">
-            <div className="text-white mb-2">Accent Color:</div>
+      <Section flexCol showAnimatedBackground>
+        <div className="text-white mt-10 mb-10">
+          <div className="text-white mb-2">Background Color:</div>
+          <ChromePicker
+            color={colors['--primary-bg-color']}
+            onChange={(color) => onColorChange(color, '--primary-bg-color')}
+          />
+        </div>
+        <div className="text-white mt-10 mb-10">
+          <div className="text-white mb-2">Accent Color:</div>
 
-            <ChromePicker
-              color={colors['--primary-accent-color']}
-              onChange={(color) =>
-                onColorChange(color, '--primary-accent-color')
-              }
-            />
-          </div>
-          <div className="text-white mt-10 mb-10">
-            <div className="text-white mb-2">Second Accent Color:</div>
+          <ChromePicker
+            color={colors['--primary-accent-color']}
+            onChange={(color) => onColorChange(color, '--primary-accent-color')}
+          />
+        </div>
+        <div className="text-white mt-10 mb-10">
+          <div className="text-white mb-2">Second Accent Color:</div>
 
-            <ChromePicker
-              color={colors['--secondary-accent-color']}
-              onChange={(color) =>
-                onColorChange(color, '--secondary-accent-color')
-              }
-            />
+          <ChromePicker
+            color={colors['--secondary-accent-color']}
+            onChange={(color) =>
+              onColorChange(color, '--secondary-accent-color')
+            }
+          />
+        </div>
+        <div className="mb-10">
+          <div className="text-white flex flex-col mb-2">
+            Number of Background Shapes:
           </div>
-          <div className="mb-10">
-            <div className="text-white flex flex-col mb-2">
-              Number of Background Shapes:
-            </div>
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              className=" pl-2"
-            />
-            <button onClick={handleApplyClick} className="text-white ml-2">
-              Apply
-            </button>
-          </div>
-          <div className="mb-10">
-            <button
-              onClick={() => dispatch(resetToDefaultTheme())}
-              className="text-white ml-2"
-            >
-              Reset
-            </button>
-          </div>
-        </ZIndexWrap>
-        <AnimatedBackground />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            className=" pl-2"
+          />
+          <button onClick={handleApplyClick} className="text-white ml-2">
+            Apply
+          </button>
+        </div>
+        <div className="mb-10">
+          <button
+            onClick={() => dispatch(resetToDefaultTheme())}
+            className="text-white ml-2"
+          >
+            Reset
+          </button>
+        </div>
       </Section>
+      <AnimatedBackground />
     </>
   );
 };

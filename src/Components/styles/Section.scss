@@ -2,7 +2,6 @@
     width: 100%;
     display: flex;
     position: relative;
-    clip-path: rect(0 0 100% 100%);
 }
 
 .contentWrapper {
@@ -11,4 +10,6 @@
     width: 100%;
     padding: 0 20px;
     display: flex;
+    z-index: 15;
+    position: relative;
 }

@@ -66,17 +66,7 @@ const AnimatedBackground: FC = () => {
     };
   }, [numShapes]);
 
-  return (
-    <div className="w-full contents">{svgElements.map((elem) => elem)}</div>
-  );
-};
-
-type ZIndexWrapProps = {
-  children?: ReactNode;
-};
-
-export const ZIndexWrap: FC<ZIndexWrapProps> = ({ children }) => {
-  return <div className={styles.childZIndex}>{children}</div>;
+  return <div className="contents">{svgElements.map((elem) => elem)}</div>;
 };
 
 export default AnimatedBackground;

@@ -1,6 +1,8 @@
 import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Section from './Section';
+import Modal from './Modal';
+import Settings from '../Pages/Settings';
 import styles from './styles/NavBar.scss';
 import classNames from 'classnames';
 
@@ -14,6 +16,7 @@ type Props = {
 };
 
 const NavBar: FC<Props> = ({ options }) => {
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [topOfPage, setTopOfPage] = useState(window.scrollY === 0);
   const navBarHeight = 50;
 
@@ -22,7 +25,7 @@ const NavBar: FC<Props> = ({ options }) => {
   }, []);
 
   return (
-    <div>
+    <>
       <Section
         style={classNames(styles.navContainer, {
           [styles.navBoxShadow]: !topOfPage,
@@ -37,7 +40,10 @@ const NavBar: FC<Props> = ({ options }) => {
             </Link>
           );
         })}
-        <Link className={styles.settingsNavLink} to={'/settings'}>
+        <a
+          className={styles.settingsNavLink}
+          onClick={() => setIsSettingsModalOpen(true)}
+        >
           <svg
             className={styles.settingsCog}
             xmlns="http://www.w3.org/2000/svg"
@@ -47,10 +53,17 @@ const NavBar: FC<Props> = ({ options }) => {
             <path d="M27,18c-4.963,0-9,4.037-9,9s4.037,9,9,9s9-4.037,9-9S31.963,18,27,18z M27,34c-3.859,0-7-3.141-7-7s3.141-7,7-7   s7,3.141,7,7S30.859,34,27,34z" />
           </svg>
           Settings
-        </Link>
+        </a>
       </Section>
       <Section height={navBarHeight} />
-    </div>
+      <Modal
+        isOpen={isSettingsModalOpen}
+        onClose={() => setIsSettingsModalOpen(false)}
+        size="medium"
+      >
+        <Settings />
+      </Modal>
+    </>
   );
 };
 

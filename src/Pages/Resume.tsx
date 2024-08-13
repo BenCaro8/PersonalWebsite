@@ -1,7 +1,5 @@
 import { FC } from 'react';
-import AnimatedBackground, {
-  ZIndexWrap,
-} from '../Components/AnimatedBackground';
+import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import styles from './styles/Resume.scss';
 
@@ -13,12 +11,10 @@ const Resume: FC = () => {
           Download Resume as PDF
         </a>
       </Section>
-      <Section center>
-        <ZIndexWrap>
-          <img src="/public/Resume.jpg" className={styles.resume} />
-        </ZIndexWrap>
-        <AnimatedBackground />
+      <Section center showAnimatedBackground>
+        <img src="/public/Resume.jpg" className={styles.resume} />
       </Section>
+      <AnimatedBackground />
     </>
   );
 };
