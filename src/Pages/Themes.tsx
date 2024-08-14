@@ -46,7 +46,9 @@ const Settings: FC = () => {
   return (
     <>
       <Section backgroundColor="primary-accent-color" height={200}>
-        <Title fontFamily="Gugi">Themes:</Title>
+        <Title fontFamily="Gugi" size="medium">
+          Themes:
+        </Title>
       </Section>
       <Section flexCol showAnimatedBackground>
         <div className="text-white mt-10 mb-10">

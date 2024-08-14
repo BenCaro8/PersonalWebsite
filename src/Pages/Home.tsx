@@ -8,7 +8,9 @@ const Home: FC = () => {
   return (
     <>
       <Section backgroundColor="primary-accent-color">
-        <Title fontFamily="Gugi">Ben Caro: Software Engineer</Title>
+        <Title fontFamily="Gugi" size="large">
+          Ben Caro: Software Engineer
+        </Title>
         <img src="/public/self.png" className={styles.selfie} />
       </Section>
       <AnimatedBackground />

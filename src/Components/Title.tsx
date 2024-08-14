@@ -1,12 +1,13 @@
 import { FC, ReactNode } from 'react';
 import { ThemeColor } from '../Utils/types';
 import styles from './styles/Title.scss';
+import classNames from 'classnames';
 
 type Props = {
   children?: ReactNode;
   color?: string;
   backgroundColor?: ThemeColor | 'white';
-  fontSize?: number;
+  size?: 'large' | 'medium' | 'small';
   fontFamily?: string;
 };
 
@@ -14,15 +15,18 @@ const Title: FC<Props> = ({
   children,
   color = 'white',
   backgroundColor,
-  fontSize = 60,
+  size = 'large',
   fontFamily = 'Arial, Helvetica, sans-serif',
 }) => {
   return (
     <div
-      className={styles.title}
+      className={classNames(styles.title, {
+        [styles.titleLarge]: size === 'large',
+        [styles.titleMedium]: size === 'medium',
+        [styles.titleSmall]: size === 'small',
+      })}
       style={{
         fontFamily,
-        fontSize: `${fontSize}px`,
         color,
         backgroundColor:
           backgroundColor === 'white'

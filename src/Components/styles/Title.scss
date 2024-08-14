@@ -2,17 +2,38 @@
 
 .title {
   display: flex;
-  background-color: var(--primary-accent-color);
-  font-size: 60px;
-  color: #f0f0f0;
   margin: 0 20px;
   user-select: none;
   align-self: center;
   text-wrap: balance;
+}
+
+.titleLarge {
+  font-size: 60px;
 
   @media (max-width:959px) {
     display: relative;
     font-size: 7.3vw;
+    margin-right: 0;
+  }
+}
+
+.titleMedium {
+  font-size: 30px;
+
+  @media (max-width:959px) {
+    display: relative;
+    font-size: 6.0vw;
+    margin-right: 0;
+  }
+}
+
+.titleSmall {
+  font-size: 20px;
+
+  @media (max-width:959px) {
+    display: relative;
+    font-size: 5.5vw;
     margin-right: 0;
   }
 }

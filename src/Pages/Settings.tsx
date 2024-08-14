@@ -20,7 +20,7 @@ const Settings: FC = () => {
   const settingsDefault = (
     <>
       <Section backgroundColor="white" style="" height={70} divisionBar>
-        <Title fontSize={20} color="black">
+        <Title size="small" color="black">
           Settings:
         </Title>
       </Section>
