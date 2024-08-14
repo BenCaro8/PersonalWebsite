@@ -5,13 +5,14 @@ import styles from './styles/Section.scss';
 
 type Props = {
   children?: ReactNode;
-  backgroundColor?: ThemeColor;
+  backgroundColor?: ThemeColor | 'white';
   height?: number;
   zIndex?: number;
   style?: string;
   center?: boolean;
   flexCol?: boolean;
   showAnimatedBackground?: boolean;
+  divisionBar?: boolean;
 };
 
 const Section: FC<Props> = ({
@@ -23,30 +24,37 @@ const Section: FC<Props> = ({
   center = false,
   flexCol = false,
   showAnimatedBackground = false,
+  divisionBar = false,
 }) => {
   const height = heightParam ? `${heightParam}px` : 'fit-content';
 
   return (
-    <section
-      className={classNames({
-        [style]: !!style,
-        [styles.section]: !style,
-      })}
-      style={{
-        height,
-        backgroundColor: `var(--${backgroundColor})`,
-        zIndex: showAnimatedBackground ? 'auto' : zIndex,
-      }}
-    >
-      <div
-        className={classNames(styles.contentWrapper, {
-          'place-content-center': center,
-          'flex-col': flexCol,
+    <>
+      <section
+        className={classNames({
+          [style]: !!style,
+          [styles.section]: !style,
         })}
+        style={{
+          height,
+          backgroundColor:
+            backgroundColor === 'white'
+              ? backgroundColor
+              : `var(--${backgroundColor})`,
+          zIndex: showAnimatedBackground ? 'auto' : zIndex,
+        }}
       >
-        {children}
-      </div>
-    </section>
+        <div
+          className={classNames(styles.contentWrapper, {
+            'place-content-center': center,
+            'flex-col': flexCol,
+          })}
+        >
+          {children}
+        </div>
+      </section>
+      {divisionBar && <div className={styles.divisionBar} />}
+    </>
   );
 };
 

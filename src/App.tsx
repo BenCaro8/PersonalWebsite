@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavBar, { Option as NavBarOption } from './Components/NavBar';
+import NavBar, { NavOption as NavBarOption } from './Components/NavBar';
 import NavBarMobile from './Components/Mobile/NavBarMobile';
 import Footer from './Components/Footer';
 import Home from './Pages/Home';

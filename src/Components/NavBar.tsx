@@ -6,13 +6,13 @@ import Settings from '../Pages/Settings';
 import styles from './styles/NavBar.scss';
 import classNames from 'classnames';
 
-export type Option = {
+export type NavOption = {
   label: string;
   url: string;
 };
 
 type Props = {
-  options: Option[];
+  options: NavOption[];
 };
 
 const NavBar: FC<Props> = ({ options }) => {
@@ -59,7 +59,7 @@ const NavBar: FC<Props> = ({ options }) => {
       <Modal
         isOpen={isSettingsModalOpen}
         onClose={() => setIsSettingsModalOpen(false)}
-        size="medium"
+        size="small"
       >
         <Settings />
       </Modal>

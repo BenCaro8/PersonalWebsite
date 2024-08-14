@@ -5,7 +5,7 @@ import classNames from 'classnames';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  size?: 'large' | 'medium';
+  size?: 'large' | 'medium' | 'small';
   children?: ReactNode;
 };
 
@@ -18,6 +18,7 @@ const Modal: FC<Props> = ({ isOpen, onClose, size = 'medium', children }) => {
         className={classNames(styles.modalContentWrapper, {
           [styles.modalLarge]: size === 'large',
           [styles.modalMedium]: size === 'medium',
+          [styles.modalSmall]: size === 'small',
         })}
         onClick={(e) => e.stopPropagation()}
       >

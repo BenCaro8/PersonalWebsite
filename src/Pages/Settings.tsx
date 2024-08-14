@@ -1,107 +1,54 @@
-import { FC, useState, useEffect } from 'react';
-import { ChromePicker, ColorResult } from 'react-color';
-import AnimatedBackground from '../Components/AnimatedBackground';
+import { FC, ReactNode, useState } from 'react';
 import Section from '../Components/Section';
-import { useAppSelector, useAppDispatch } from '../store';
-import {
-  setColors,
-  resetToDefaultTheme,
-  setNumShapes,
-} from '../stores/settings';
-import { ColorState } from '../Utils/helpers';
+import Title from '../Components/Title';
+import Themes from './Themes';
 import styles from './styles/Settings.scss';
 
+type SettingsOption = {
+  label: string;
+  component: ReactNode;
+};
+
+const settingsOptions: SettingsOption[] = [
+  { label: 'Themes', component: <Themes /> },
+];
+
 const Settings: FC = () => {
-  const isMobile = useAppSelector((state) => state.settings.isMobile);
-  const colors = useAppSelector((state) => state.settings.colors);
-  const numShapes = useAppSelector((state) => state.settings.numShapes);
-  const [inputValue, setInputValue] = useState(numShapes.toString());
-  const dispatch = useAppDispatch();
+  const [selectedSettingsPage, setSelectedSettingsPage] =
+    useState<ReactNode | null>(null);
 
-  const onColorChange = (color: ColorResult, property: keyof ColorState) => {
-    dispatch(setColors({ [property]: color.hex }));
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    if (
-      /^\d*$/.test(value) &&
-      (parseInt(value) || 1) <= (isMobile ? 35 : 100)
-    ) {
-      setInputValue(value);
-    }
-  };
-
-  const handleApplyClick = () => {
-    const newCount = parseInt(inputValue);
-    if (!isNaN(newCount)) {
-      dispatch(setNumShapes(newCount));
-    }
-  };
-
-  useEffect(() => {
-    setInputValue(numShapes.toString());
-  }, [numShapes]);
-
-  return (
+  const settingsDefault = (
     <>
-      <Section backgroundColor="primary-accent-color" height={200}>
-        <div className={styles.title}>
-          <span>Themes:</span>
-        </div>
+      <Section backgroundColor="white" style="" height={70} divisionBar>
+        <Title fontSize={20} color="black">
+          Settings:
+        </Title>
       </Section>
-      <Section flexCol showAnimatedBackground>
-        <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Background Color:</div>
-          <ChromePicker
-            color={colors['--primary-bg-color']}
-            onChange={(color) => onColorChange(color, '--primary-bg-color')}
-          />
-        </div>
-        <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Accent Color:</div>
-
-          <ChromePicker
-            color={colors['--primary-accent-color']}
-            onChange={(color) => onColorChange(color, '--primary-accent-color')}
-          />
-        </div>
-        <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Second Accent Color:</div>
-
-          <ChromePicker
-            color={colors['--secondary-accent-color']}
-            onChange={(color) =>
-              onColorChange(color, '--secondary-accent-color')
-            }
-          />
-        </div>
-        <div className="mb-10">
-          <div className="text-white flex flex-col mb-2">
-            Number of Background Shapes:
-          </div>
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            className=" pl-2"
-          />
-          <button onClick={handleApplyClick} className="text-white ml-2">
-            Apply
-          </button>
-        </div>
-        <div className="mb-10">
-          <button
-            onClick={() => dispatch(resetToDefaultTheme())}
-            className="text-white ml-2"
-          >
-            Reset
-          </button>
-        </div>
+      <Section backgroundColor="white" flexCol>
+        {settingsOptions.map((option, index) => {
+          return (
+            <a
+              key={index}
+              className={styles.settingsOption}
+              onClick={() => setSelectedSettingsPage(option.component)}
+            >
+              {option.label}
+              <svg viewBox="0 0 24 24" height="20px" width="20px">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"
+                  fill="black"
+                />
+              </svg>
+            </a>
+          );
+        })}
       </Section>
-      <AnimatedBackground />
     </>
   );
+
+  return selectedSettingsPage || settingsDefault;
 };
 
 export default Settings;
