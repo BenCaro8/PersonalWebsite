@@ -5,6 +5,7 @@ import NavBarMobile from './Components/Mobile/NavBarMobile';
 import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Resume from './Pages/Resume';
+import Themes from './Pages/Themes';
 import InProgress from './Pages/InProgress';
 import { useAppSelector, useAppDispatch } from './store';
 import {
@@ -73,6 +74,7 @@ const App: FC = () => {
           <Route path="/about" element={<InProgress />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/projects" element={<InProgress />} />
+          <Route path="/themes" element={<Themes />} />
         </Routes>
         <Footer />
       </div>

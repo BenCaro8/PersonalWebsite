@@ -61,7 +61,7 @@ const NavBar: FC<Props> = ({ options }) => {
         onClose={() => setIsSettingsModalOpen(false)}
         size="small"
       >
-        <Settings />
+        <Settings onClose={() => setIsSettingsModalOpen(false)} />
       </Modal>
     </>
   );
