@@ -1,16 +1,9 @@
 import { FC, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Section from '../Components/Section';
-import Title from '../Components/Title';
+import Section from './Section';
+import Title from './Title';
+import { settingsOptions } from '../Utils/types';
 import styles from './styles/Settings.scss';
-
-type SettingsOption = {
-  label: string;
-  component?: ReactNode;
-  url?: string;
-};
-
-const settingsOptions: SettingsOption[] = [{ label: 'Themes', url: '/themes' }];
 
 type Props = {
   onClose: () => void;
@@ -22,7 +15,7 @@ const Settings: FC<Props> = ({ onClose }) => {
 
   const settingsDefault = (
     <>
-      <Section backgroundColor="white" style="" height={70} divisionBar>
+      <Section backgroundColor="white" height={70} divisionBar>
         <Title size="small" color="black">
           Settings:
         </Title>

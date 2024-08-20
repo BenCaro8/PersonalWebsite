@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import Modal from './Modal';
-import Settings from '../Pages/Settings';
+import Settings from './Settings';
 import styles from './styles/NavBar.scss';
 import classNames from 'classnames';
 

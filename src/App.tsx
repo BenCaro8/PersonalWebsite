@@ -68,7 +68,7 @@ const App: FC = () => {
   return (
     <BrowserRouter basename="/">
       <div className={styles.appContainer}>
-        <NavBar options={navBarOptions} />
+        {NavBarComponent}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<InProgress />} />

@@ -11,7 +11,7 @@ import {
 } from '../stores/settings';
 import { ColorState } from '../Utils/helpers';
 
-const Settings: FC = () => {
+const Themes: FC = () => {
   const isMobile = useAppSelector((state) => state.settings.isMobile);
   const colors = useAppSelector((state) => state.settings.colors);
   const numShapes = useAppSelector((state) => state.settings.numShapes);
@@ -84,7 +84,7 @@ const Settings: FC = () => {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            className=" pl-2"
+            className="pl-2"
           />
           <button onClick={handleApplyClick} className="text-white ml-2">
             Apply
@@ -104,4 +104,4 @@ const Settings: FC = () => {
   );
 };
 
-export default Settings;
+export default Themes;

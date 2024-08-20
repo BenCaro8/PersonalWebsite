@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Modal: FC<Props> = ({ isOpen, onClose, size = 'medium', children }) => {
-  if (!isOpen) return null; // Do not render the modal if it's not open
+  if (!isOpen) return null;
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
