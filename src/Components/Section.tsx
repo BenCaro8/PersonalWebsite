@@ -3,9 +3,11 @@ import { ThemeColor } from '../Utils/types';
 import classNames from 'classnames';
 import styles from './styles/Section.scss';
 
+type BackgroundColor = ThemeColor | 'white';
+
 type Props = {
   children?: ReactNode;
-  backgroundColor?: ThemeColor | 'white';
+  backgroundColor?: BackgroundColor;
   height?: number;
   zIndex?: number;
   style?: string;
