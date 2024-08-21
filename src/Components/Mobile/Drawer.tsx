@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, useEffect, ReactNode } from 'react';
 import styles from './styles/Drawer.scss';
 import classNames from 'classnames';
 
@@ -9,6 +9,15 @@ type Props = {
 };
 
 const Drawer: FC<Props> = ({ isOpen, onClose, children }) => {
+  useEffect(() => {
+    isOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = '');
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <div
       className={classNames(styles.drawerWrapper, {
