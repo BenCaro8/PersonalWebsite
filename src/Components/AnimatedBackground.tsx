@@ -30,8 +30,8 @@ const AnimatedBackground: FC = () => {
         @keyframes ${animationName} {
           to {
             bottom: 150vh;
-            transform: 
-            scale(${0.3 * (i % 10) - 0.6}) 
+            transform:
+            scale(${0.3 * (i % 10) - 0.6})
             rotate(${Math.random() * 360}deg);
           }
         }
