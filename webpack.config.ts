@@ -18,6 +18,7 @@ const plugins: webpack.WebpackPluginInstance[] = [
       { from: './public/*.png', to: '.' }, //to the dist root directory
       { from: './public/*.jpg', to: '.' },
       { from: './public/*.pdf', to: '.' },
+      { from: './public/shaders/*.glsl', to: '.' },
     ],
   }),
 ];
