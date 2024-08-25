@@ -19,7 +19,11 @@
 }
 
 .titleMedium {
-  font-size: 30px;
+  font-size: 45px;
+
+  @media (max-width:959px) {
+    font-size: 5.5vw;
+  }
 }
 
 .titleSmall {
