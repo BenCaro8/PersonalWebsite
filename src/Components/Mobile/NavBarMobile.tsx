@@ -41,9 +41,9 @@ const NavBarMobile: FC<Props> = ({ options }) => {
         <button className={styles.hamburger} onClick={toggleMenu}>
           ☰
         </button>
-        <div className={styles.siteNameWrapper}>
+        <Link className={styles.rightCenter} to="/">
           <Title size="small">Ben-Caro.com</Title>
-        </div>
+        </Link>
       </Section>
       <Section height={navBarHeight} />
       <Drawer
@@ -78,7 +78,6 @@ const NavBarMobile: FC<Props> = ({ options }) => {
             [styles.closed]: !isSettingsOpen,
           })}
         >
-          {!isSettingsOpen && <div className={styles.divisionLine} />}
           <a
             className={styles.settingsNavLink}
             onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -92,8 +91,20 @@ const NavBarMobile: FC<Props> = ({ options }) => {
               <path d="M27,18c-4.963,0-9,4.037-9,9s4.037,9,9,9s9-4.037,9-9S31.963,18,27,18z M27,34c-3.859,0-7-3.141-7-7s3.141-7,7-7   s7,3.141,7,7S30.859,34,27,34z" />
             </svg>
             Settings
+            <div className={styles.rightCenter}>
+              <svg
+                viewBox="0 0 24 24"
+                className={classNames(styles.caret, {
+                  [styles.rotate]: !isSettingsOpen,
+                })}
+              >
+                <path
+                  d="M5.16108 10.0731C4.45387 9.2649 5.02785 8 6.1018 8H17.898C18.972 8 19.5459 9.2649 18.8388 10.0731L13.3169 16.3838C12.6197 17.1806 11.3801 17.1806 10.6829 16.3838L5.16108 10.0731ZM6.65274 9.5L11.8118 15.396C11.9114 15.5099 12.0885 15.5099 12.1881 15.396L17.3471 9.5H6.65274Z"
+                  fill="#212121"
+                />
+              </svg>
+            </div>
           </a>
-          {isSettingsOpen && <div className={styles.divisionLine} />}
           <Link
             className={styles.drawerOption}
             onClick={() => {
