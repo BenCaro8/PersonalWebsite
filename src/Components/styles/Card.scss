@@ -12,8 +12,12 @@
   }
 }
 
-.center * {
+.center {
   margin: 0 auto;
+
+  * {
+    margin: 0 auto;
+  }
 }
 
 .pic {
@@ -32,7 +36,6 @@
 }
 
 .paragraph {
-  margin-right: 10px;
   align-content: center;
   font-size: large;
 

@@ -17,7 +17,7 @@
 
   @media (max-width:959px) {
     display: relative;
-    font-size: 6.5vw;
+    font-size: min(6.5vw, 60px);
   }
 }
 
@@ -25,7 +25,8 @@
   font-size: 45px;
 
   @media (max-width:959px) {
-    font-size: 5.5vw;
+    display: relative;
+    font-size: min(5.5vw, 45px);
   }
 }
 

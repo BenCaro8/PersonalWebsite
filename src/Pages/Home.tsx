@@ -22,7 +22,9 @@ const Home: FC = () => {
             backgroundColor="primary-bg-color"
             imgSrc="https://cdn-icons-png.flaticon.com/512/8743/8743996.png"
           >
-            <Title center>Explore my website!</Title>
+            <Title size="medium" center>
+              Explore my website!
+            </Title>
             <p>(This is a placeholder)</p>
           </Card>
         </Section>

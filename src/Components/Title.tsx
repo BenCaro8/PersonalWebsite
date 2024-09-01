@@ -37,7 +37,13 @@ const Title: FC<Props> = ({
             : `var(--${backgroundColor})`,
       }}
     >
-      <span>{children}</span>
+      <span
+        className={classNames({
+          [styles.center]: center,
+        })}
+      >
+        {children}
+      </span>
     </div>
   );
 };

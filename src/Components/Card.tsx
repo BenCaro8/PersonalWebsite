@@ -45,13 +45,13 @@ const Card: FC<Props> = ({
           borderRadius: `${borderRadius}px`,
         }}
       >
-        <span
+        <div
           className={classNames(styles.paragraph, {
             [styles.center]: center,
           })}
         >
           {children}
-        </span>
+        </div>
       </div>
       {imgRight && imgSrc && (
         <img src={imgSrc} className={classNames(styles.pic, '-ml-5')} />
