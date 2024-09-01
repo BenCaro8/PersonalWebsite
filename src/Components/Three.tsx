@@ -65,12 +65,12 @@ const Three: FC = () => {
 
     const cubeLoader = new THREE.CubeTextureLoader();
     const texture = cubeLoader.load([
-      './public/textures/Cold_Sunset__Cam_2_Left+X.png',
-      './public/textures/Cold_Sunset__Cam_3_Right-X.png',
-      './public/textures/Cold_Sunset__Cam_4_Up+Y.png',
-      './public/textures/Cold_Sunset__Cam_5_Down-Y.png',
-      './public/textures/Cold_Sunset__Cam_0_Front+Z.png',
-      './public/textures/Cold_Sunset__Cam_1_Back-Z.png',
+      '/public/textures/Cold_Sunset__Cam_2_Left+X.png',
+      '/public/textures/Cold_Sunset__Cam_3_Right-X.png',
+      '/public/textures/Cold_Sunset__Cam_4_Up+Y.png',
+      '/public/textures/Cold_Sunset__Cam_5_Down-Y.png',
+      '/public/textures/Cold_Sunset__Cam_0_Front+Z.png',
+      '/public/textures/Cold_Sunset__Cam_1_Back-Z.png',
     ]);
 
     scene.background = texture;
@@ -101,7 +101,7 @@ const Three: FC = () => {
       });
 
       const loader = new GLTFLoader();
-      loader.setPath('./public/textures/');
+      loader.setPath('/public/textures/');
       loader.load('suzanne.glb', (gltf) => {
         const model = gltf.scene;
         model.traverse((child) => {
