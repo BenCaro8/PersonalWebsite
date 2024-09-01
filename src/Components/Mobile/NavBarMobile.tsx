@@ -23,6 +23,28 @@ const NavBarMobile: FC<Props> = ({ options }) => {
 
   useEffect(() => {
     window.onscroll = () => setTopOfPage(window.scrollY < 20);
+
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    const checkSwipe = () => {
+      if (touchendX > touchstartX && touchendX - touchstartX > 100) {
+        setIsOpen(true);
+      }
+      if (touchendX < touchstartX && touchstartX - touchendX > 100) {
+        setIsOpen(false);
+        setIsSettingsOpen(false);
+      }
+    };
+
+    document.addEventListener('touchstart', (e) => {
+      touchstartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchendX = e.changedTouches[0].screenX;
+      checkSwipe();
+    });
   }, []);
 
   const toggleMenu = () => {
