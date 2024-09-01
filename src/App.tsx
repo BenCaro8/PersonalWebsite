@@ -6,8 +6,9 @@ import Footer from './Components/Footer';
 import Home from './Pages/Home';
 import Resume from './Pages/Resume';
 import Themes from './Pages/Themes';
+import About from './Pages/About';
 import Projects from './Pages/Projects';
-import InProgress from './Pages/InProgress';
+import Three from './Components/Three';
 import { useAppSelector, useAppDispatch } from './store';
 import {
   setIsMobile,
@@ -72,10 +73,11 @@ const App: FC = () => {
         {NavBarComponent}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<InProgress />} />
+          <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/themes" element={<Themes />} />
+          <Route path="/three" element={<Three />} />
         </Routes>
         <Footer />
       </div>

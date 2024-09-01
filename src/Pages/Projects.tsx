@@ -8,7 +8,7 @@ const Projects: FC = () => {
   return (
     <div className="mt-auto mb-auto">
       <Section backgroundColor="primary-accent-color" flexCol>
-        <Title fontFamily="Gugi" size="medium">
+        <Title fontFamily="Gugi" size="medium" center>
           This Website:
         </Title>
         <div className={styles.content}>

@@ -4,9 +4,9 @@
 
 :root {
   --primary-bg-color: #111111;
-  --secondary-bg-color: #333333;
-  --primary-accent-color: #c56d00;
-  --secondary-accent-color: #3034d2;
+  --primary-accent-color: #355eb8;
+  --secondary-accent-color: #13468b;
+  --primary-gradient-color: #000d45;
 }
 
 #root {

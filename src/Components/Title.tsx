@@ -6,6 +6,7 @@ import classNames from 'classnames';
 type Props = {
   children?: ReactNode;
   color?: string;
+  center?: boolean;
   backgroundColor?: ThemeColor | 'white';
   size?: 'large' | 'medium' | 'small';
   fontFamily?: string;
@@ -14,6 +15,7 @@ type Props = {
 const Title: FC<Props> = ({
   children,
   color = 'white',
+  center = false,
   backgroundColor,
   size = 'large',
   fontFamily = 'Arial, Helvetica, sans-serif',
@@ -24,6 +26,7 @@ const Title: FC<Props> = ({
         [styles.titleLarge]: size === 'large',
         [styles.titleMedium]: size === 'medium',
         [styles.titleSmall]: size === 'small',
+        [styles.center]: center,
       })}
       style={{
         fontFamily,

@@ -32,6 +32,7 @@ const NavBar: FC<Props> = ({ options }) => {
         })}
         height={navBarHeight}
         zIndex={100}
+        center
       >
         {options.map((option, index) => {
           return (

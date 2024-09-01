@@ -14,7 +14,6 @@ const TypingAnimation: FC<Props> = ({ text, delay = 150 }) => {
   const getDelay = () => {
     const addition = Math.floor(Math.random() * 2) === 0;
     const deviation = Math.floor(Math.random() * Math.floor(delay * 0.7));
-    console.log(deviation);
     return addition ? delay + deviation : delay - deviation;
   };
 
@@ -36,7 +35,7 @@ const TypingAnimation: FC<Props> = ({ text, delay = 150 }) => {
 
   return (
     <>
-      <Title fontFamily="Gugi" size="large">
+      <Title fontFamily="Gugi" size="large" center>
         {text.slice(0, currIndex)}
         {displayCursor && <div className={styles.typingCursor} />}
       </Title>

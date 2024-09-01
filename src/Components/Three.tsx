@@ -1,9 +1,15 @@
 import { FC, useState, useRef, useEffect, useCallback } from 'react';
 // import { useAppSelector } from '../store';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 
-const Projects: FC = () => {
+const Three: FC = () => {
   const renderer = useRef(new THREE.WebGLRenderer());
+  const material = useRef(new THREE.ShaderMaterial());
+  const camera = useRef(
+    new THREE.PerspectiveCamera(60, 1980.0 / 1080.0, 0.1, 1000.0),
+  );
   const canvasContainer = useRef<HTMLDivElement | null>(null);
   // const colors = useAppSelector((state) => state.settings.colors);
   const [divContainer, setDivContainer] = useState<HTMLDivElement | null>(null);
@@ -21,6 +27,12 @@ const Projects: FC = () => {
           divContainer.getBoundingClientRect().height,
         ];
         renderer.current.setSize(width, height);
+        camera.current.aspect = width / height;
+        camera.current.updateProjectionMatrix();
+        material.current.uniforms.resolution.value = new THREE.Vector2(
+          width,
+          height,
+        );
       }
     };
     window.addEventListener('resize', setRendererSize, false);
@@ -32,47 +44,99 @@ const Projects: FC = () => {
   useEffect(() => {
     // === THREE.JS CODE START ===
     const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(0, 1, 1, 0, 0.1, 1000);
-    camera.position.set(0, 0, 1);
-    renderer.current.setSize(
+
+    const [width, height] = [
       divContainer?.getBoundingClientRect()?.width || 250,
       divContainer?.getBoundingClientRect()?.height || 250,
-    );
+    ];
+    renderer.current.setSize(width, height);
+    camera.current.aspect = width / height;
+    camera.current.updateProjectionMatrix();
+    camera.current.position.set(1, 0, 3);
     // use ref as a mount point of the Three.js scene instead of the document.body
     canvasContainer.current?.appendChild(renderer.current.domElement);
+
+    const controls = new OrbitControls(
+      camera.current,
+      renderer.current.domElement,
+    );
+    controls.target.set(0, 0, 0);
+    controls.update();
+
+    const cubeLoader = new THREE.CubeTextureLoader();
+    const texture = cubeLoader.load([
+      './public/textures/Cold_Sunset__Cam_2_Left+X.png',
+      './public/textures/Cold_Sunset__Cam_3_Right-X.png',
+      './public/textures/Cold_Sunset__Cam_4_Up+Y.png',
+      './public/textures/Cold_Sunset__Cam_5_Down-Y.png',
+      './public/textures/Cold_Sunset__Cam_0_Front+Z.png',
+      './public/textures/Cold_Sunset__Cam_1_Back-Z.png',
+    ]);
+
+    scene.background = texture;
+
+    let totalTime = 0.0;
 
     const shaderSetup = async () => {
       const vsh = await fetch('/public/shaders/vertex-shader.glsl');
       const fsh = await fetch('/public/shaders/fragment-shader.glsl');
 
-      const loader = new THREE.TextureLoader();
-      const pic = loader.load('/public/self.png');
-      pic.wrapS = THREE.MirroredRepeatWrapping;
-      pic.wrapT = THREE.MirroredRepeatWrapping;
-      pic.magFilter = THREE.LinearFilter;
-
-      const material = new THREE.ShaderMaterial({
+      material.current = new THREE.ShaderMaterial({
         uniforms: {
-          diffuse: { value: pic },
+          resolution: {
+            value: new THREE.Vector2(
+              divContainer?.getBoundingClientRect()?.width || 250,
+              divContainer?.getBoundingClientRect()?.height || 250,
+            ),
+          },
+          time: {
+            value: 0.0,
+          },
+          specMap: {
+            value: scene.background,
+          },
         },
         vertexShader: await vsh.text(),
         fragmentShader: await fsh.text(),
       });
 
-      const geometry = new THREE.PlaneGeometry(1, 1);
+      const loader = new GLTFLoader();
+      loader.setPath('./public/textures/');
+      loader.load('suzanne.glb', (gltf) => {
+        const model = gltf.scene;
+        model.traverse((child) => {
+          (child as THREE.Mesh).material = material.current;
+        });
+        scene.add(model);
+      });
 
-      const plane = new THREE.Mesh(geometry, material);
-      plane.position.set(0.5, 0.5, 0);
-      scene.add(plane);
+      // const geometry = new THREE.IcosahedronGeometry(1, 128);
+
+      // const mesh = new THREE.Mesh(geometry, material.current);
+      // scene.add(mesh);
     };
 
     shaderSetup().catch(console.error);
 
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.current.render(scene, camera);
+    const step = (timeElapsed: number) => {
+      const timeElapsedS = timeElapsed * 0.001;
+      totalTime += timeElapsedS;
+      if (material?.current?.uniforms?.time) {
+        material.current.uniforms.time.value = totalTime;
+      }
     };
-    animate();
+
+    let previousRAF: number | null = null;
+    const animate = (t: number) => {
+      if (previousRAF === null) {
+        previousRAF = t;
+      }
+      step(t - previousRAF);
+      requestAnimationFrame((t) => animate(t));
+      renderer.current.render(scene, camera.current);
+      previousRAF = t;
+    };
+    animate(0.0);
 
     return () => {
       if (canvasContainer.current) {
@@ -88,4 +152,4 @@ const Projects: FC = () => {
   );
 };
 
-export default Projects;
+export default Three;

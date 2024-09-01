@@ -3,7 +3,7 @@ import { useAppSelector } from '../store';
 import { shapes, getSvg } from '../Utils/svgs';
 import styles from './styles/AnimatedBackground.scss';
 
-const colors = ['red', 'purple', 'blue', 'green', 'yellow', 'white'];
+const colors = ['primary-accent-color', 'secondary-accent-color'];
 
 const AnimatedBackground: FC = () => {
   const [svgElements, setSvgElements] = useState<ReactNode[]>([]);

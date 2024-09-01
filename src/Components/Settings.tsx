@@ -16,7 +16,7 @@ const Settings: FC<Props> = ({ onClose }) => {
   const settingsDefault = (
     <>
       <Section backgroundColor="white" height={70} divisionBar>
-        <Title size="small" color="black">
+        <Title size="small" color="black" center>
           Settings:
         </Title>
       </Section>

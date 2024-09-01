@@ -19,6 +19,8 @@ const plugins: webpack.WebpackPluginInstance[] = [
       { from: './public/*.jpg', to: '.' },
       { from: './public/*.pdf', to: '.' },
       { from: './public/shaders/*.glsl', to: '.' },
+      { from: './public/textures/*.png', to: '.' },
+      { from: './public/textures/*.glb', to: '.' },
     ],
   }),
 ];

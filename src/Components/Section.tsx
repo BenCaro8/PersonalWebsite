@@ -3,11 +3,12 @@ import { ThemeColor } from '../Utils/types';
 import classNames from 'classnames';
 import styles from './styles/Section.scss';
 
-type BackgroundColor = ThemeColor | 'white';
+type BackgroundColor = ThemeColor | 'white' | 'none';
 
 type Props = {
   children?: ReactNode;
   backgroundColor?: BackgroundColor;
+  gradient?: BackgroundColor;
   height?: number;
   zIndex?: number;
   style?: string;
@@ -19,7 +20,8 @@ type Props = {
 
 const Section: FC<Props> = ({
   children,
-  backgroundColor = 'primary-bg-color',
+  backgroundColor: backgroundColorParam = 'primary-bg-color',
+  gradient: gradientParam,
   height: heightParam,
   zIndex = 10,
   style = '',
@@ -30,6 +32,17 @@ const Section: FC<Props> = ({
 }) => {
   const height = heightParam ? `${heightParam}px` : 'fit-content';
 
+  let backgroundColor =
+    !backgroundColorParam || backgroundColorParam === 'white'
+      ? backgroundColorParam
+      : `var(--${backgroundColorParam})`;
+
+  if (gradientParam) {
+    const gradient =
+      gradientParam === 'white' ? gradientParam : `var(--${gradientParam})`;
+    backgroundColor = `linear-gradient(45deg, ${backgroundColor}, ${gradient})`;
+  }
+
   return (
     <>
       <section
@@ -39,16 +52,13 @@ const Section: FC<Props> = ({
         })}
         style={{
           height,
-          backgroundColor:
-            backgroundColor === 'white'
-              ? backgroundColor
-              : `var(--${backgroundColor})`,
+          background: backgroundColor,
           zIndex: showAnimatedBackground ? 'auto' : zIndex,
         }}
       >
         <div
           className={classNames(styles.contentWrapper, {
-            'place-content-center': center,
+            'place-content-center items-center': center,
             'flex-col': flexCol,
           })}
         >

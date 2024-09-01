@@ -46,7 +46,7 @@ const Themes: FC = () => {
   return (
     <>
       <Section backgroundColor="primary-accent-color" height={200}>
-        <Title fontFamily="Gugi" size="medium">
+        <Title fontFamily="Gugi" size="medium" center>
           Themes:
         </Title>
       </Section>
@@ -58,6 +58,29 @@ const Themes: FC = () => {
             onChange={(color) => onColorChange(color, '--primary-bg-color')}
           />
         </div>
+      </Section>
+      <Section
+        showAnimatedBackground
+        flexCol
+        backgroundColor="primary-gradient-color"
+        gradient="secondary-accent-color"
+      >
+        <div className="text-white mt-10 mb-10">
+          <div className="text-white mb-2">Gradient Color:</div>
+
+          <ChromePicker
+            color={colors['--primary-gradient-color']}
+            onChange={(color) =>
+              onColorChange(color, '--primary-gradient-color')
+            }
+          />
+        </div>
+      </Section>
+      <Section
+        showAnimatedBackground
+        flexCol
+        backgroundColor="primary-accent-color"
+      >
         <div className="text-white mt-10 mb-10">
           <div className="text-white mb-2">Accent Color:</div>
 
@@ -66,6 +89,12 @@ const Themes: FC = () => {
             onChange={(color) => onColorChange(color, '--primary-accent-color')}
           />
         </div>
+      </Section>
+      <Section
+        showAnimatedBackground
+        flexCol
+        backgroundColor="secondary-accent-color"
+      >
         <div className="text-white mt-10 mb-10">
           <div className="text-white mb-2">Second Accent Color:</div>
 
@@ -76,6 +105,8 @@ const Themes: FC = () => {
             }
           />
         </div>
+      </Section>
+      <Section flexCol style="py-5" showAnimatedBackground>
         <div className="mb-10">
           <div className="text-white flex flex-col mb-2">
             Number of Background Shapes:
