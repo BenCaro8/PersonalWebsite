@@ -1,7 +1,7 @@
 import { FC, useState, useRef, useEffect, useCallback } from 'react';
 // import { useAppSelector } from '../store';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three';
 
 const Three: FC = () => {
@@ -100,20 +100,19 @@ const Three: FC = () => {
         fragmentShader: await fsh.text(),
       });
 
-      const loader = new GLTFLoader();
-      loader.setPath('/public/textures/');
-      loader.load('suzanne.glb', (gltf) => {
-        const model = gltf.scene;
-        model.traverse((child) => {
-          (child as THREE.Mesh).material = material.current;
-        });
-        scene.add(model);
-      });
+      // const loader = new GLTFLoader();
+      // loader.setPath('/public/textures/');
+      // loader.load('suzanne.glb', (gltf) => {
+      //   const model = gltf.scene;
+      //   model.traverse((child) => {
+      //     (child as THREE.Mesh).material = material.current;
+      //   });
+      //   scene.add(model);
+      // });
 
-      // const geometry = new THREE.IcosahedronGeometry(1, 128);
-
-      // const mesh = new THREE.Mesh(geometry, material.current);
-      // scene.add(mesh);
+      const geometry = new THREE.IcosahedronGeometry(1, 128);
+      const mesh = new THREE.Mesh(geometry, material.current);
+      scene.add(mesh);
     };
 
     shaderSetup().catch(console.error);
