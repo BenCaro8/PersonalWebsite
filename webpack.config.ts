@@ -43,17 +43,15 @@ const config: webpack.Configuration = {
     port: 3000,
     historyApiFallback: true,
   },
-  entry: './src/index.tsx', // codes will be inside src folder
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    publicPath: './',
-    // more configurations: https://webpack.js.org/configuration/
+    publicPath: '/',
   },
   plugins,
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
-    // automatically resolve certain extensions (Ex. import './file' will automatically look for file.js)
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.css'],
     alias: {
       // absolute path importing files
@@ -92,9 +90,7 @@ const config: webpack.Configuration = {
               modules: true,
             },
           },
-          // for Tailwind CSS
           'postcss-loader',
-          // Compiles Sass to CSS
           'sass-loader',
         ],
       },
