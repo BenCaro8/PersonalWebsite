@@ -1,5 +1,9 @@
 import path from 'path';
-import webpack from 'webpack';
+import {
+  Configuration as WebpackConfiguration,
+  WebpackPluginInstance,
+} from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
@@ -10,7 +14,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // define plugins
-const plugins: webpack.WebpackPluginInstance[] = [
+const plugins: WebpackPluginInstance[] = [
   new HTMLWebpackPlugin({
     template: './public/index.html',
   }),
@@ -36,7 +40,11 @@ isDevelopment
   ? plugins.push(new ReactRefreshWebpackPlugin())
   : plugins.push(new MiniCssExtractPlugin());
 
-const config: webpack.Configuration = {
+type Configuration = WebpackConfiguration & {
+  devServer?: WebpackDevServerConfiguration;
+};
+
+const config: Configuration = {
   mode: isDevelopment ? 'development' : 'production',
   devServer: {
     hot: true,
