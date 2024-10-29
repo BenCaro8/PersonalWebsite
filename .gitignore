@@ -8,6 +8,7 @@
 /.pnp
 /.vscode
 .pnp.js
+/amplify
 
 # testing
 /coverage

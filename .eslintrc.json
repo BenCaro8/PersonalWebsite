@@ -17,10 +17,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "single"],
+    "prettier/prettier": ["error"],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/semi": ["error"],
     "@typescript-eslint/no-explicit-any": "error",

@@ -69,7 +69,7 @@ const Card: FC<Props> = ({
         to={link}
       >
         <div
-          className={classNames(styles.paragraph, {
+          className={classNames(styles.content, {
             [styles.center]: center,
           })}
         >

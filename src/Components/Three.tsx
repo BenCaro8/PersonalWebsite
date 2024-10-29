@@ -1,15 +1,21 @@
 import { FC, useState, useRef, useEffect, useCallback } from 'react';
 // import { useAppSelector } from '../store';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import * as THREE from 'three';
+import {
+  WebGLRenderer,
+  ShaderMaterial,
+  OrthographicCamera,
+  Vector2,
+  Scene,
+  PlaneGeometry,
+  Mesh,
+} from 'three';
 
 const Three: FC = () => {
-  const renderer = useRef(new THREE.WebGLRenderer());
-  const material = useRef(new THREE.ShaderMaterial());
-  const camera = useRef(
-    new THREE.PerspectiveCamera(60, 1980.0 / 1080.0, 0.1, 1000.0),
-  );
+  const renderer = useRef(new WebGLRenderer());
+  const material = useRef(new ShaderMaterial());
+  const camera = useRef(new OrthographicCamera(0, 1, 1, 0, 0.1, 1000));
   const canvasContainer = useRef<HTMLDivElement | null>(null);
   // const colors = useAppSelector((state) => state.settings.colors);
   const [divContainer, setDivContainer] = useState<HTMLDivElement | null>(null);
@@ -27,12 +33,9 @@ const Three: FC = () => {
           divContainer.getBoundingClientRect().height,
         ];
         renderer.current.setSize(width, height);
-        camera.current.aspect = width / height;
-        camera.current.updateProjectionMatrix();
-        material.current.uniforms.resolution.value = new THREE.Vector2(
-          width,
-          height,
-        );
+        // camera.current.aspect = width / height;
+        // camera.current.updateProjectionMatrix();
+        material.current.uniforms.resolution.value = new Vector2(width, height);
       }
     };
     window.addEventListener('resize', setRendererSize, false);
@@ -42,38 +45,19 @@ const Three: FC = () => {
   }, [divContainer]);
 
   useEffect(() => {
-    // === THREE.JS CODE START ===
-    const scene = new THREE.Scene();
+    const scene = new Scene();
 
     const [width, height] = [
       divContainer?.getBoundingClientRect()?.width || 250,
       divContainer?.getBoundingClientRect()?.height || 250,
     ];
     renderer.current.setSize(width, height);
-    camera.current.aspect = width / height;
-    camera.current.updateProjectionMatrix();
-    camera.current.position.set(1, 0, 3);
+    camera.current.position.set(0, 0, 1);
+    // camera.current.aspect = width / height;
+    // camera.current.updateProjectionMatrix();
+    // camera.current.position.set(1, 0, 3);
     // use ref as a mount point of the Three.js scene instead of the document.body
     canvasContainer.current?.appendChild(renderer.current.domElement);
-
-    const controls = new OrbitControls(
-      camera.current,
-      renderer.current.domElement,
-    );
-    controls.target.set(0, 0, 0);
-    controls.update();
-
-    const cubeLoader = new THREE.CubeTextureLoader();
-    const texture = cubeLoader.load([
-      '/public/textures/Cold_Sunset__Cam_2_Left+X.png',
-      '/public/textures/Cold_Sunset__Cam_3_Right-X.png',
-      '/public/textures/Cold_Sunset__Cam_4_Up+Y.png',
-      '/public/textures/Cold_Sunset__Cam_5_Down-Y.png',
-      '/public/textures/Cold_Sunset__Cam_0_Front+Z.png',
-      '/public/textures/Cold_Sunset__Cam_1_Back-Z.png',
-    ]);
-
-    scene.background = texture;
 
     let totalTime = 0.0;
 
@@ -81,10 +65,10 @@ const Three: FC = () => {
       const vsh = await fetch('/public/shaders/vertex-shader.glsl');
       const fsh = await fetch('/public/shaders/fragment-shader.glsl');
 
-      material.current = new THREE.ShaderMaterial({
+      material.current = new ShaderMaterial({
         uniforms: {
           resolution: {
-            value: new THREE.Vector2(
+            value: new Vector2(
               divContainer?.getBoundingClientRect()?.width || 250,
               divContainer?.getBoundingClientRect()?.height || 250,
             ),
@@ -92,27 +76,15 @@ const Three: FC = () => {
           time: {
             value: 0.0,
           },
-          specMap: {
-            value: scene.background,
-          },
         },
         vertexShader: await vsh.text(),
         fragmentShader: await fsh.text(),
       });
 
-      // const loader = new GLTFLoader();
-      // loader.setPath('/public/textures/');
-      // loader.load('suzanne.glb', (gltf) => {
-      //   const model = gltf.scene;
-      //   model.traverse((child) => {
-      //     (child as THREE.Mesh).material = material.current;
-      //   });
-      //   scene.add(model);
-      // });
-
-      const geometry = new THREE.IcosahedronGeometry(1, 128);
-      const mesh = new THREE.Mesh(geometry, material.current);
-      scene.add(mesh);
+      const geometry = new PlaneGeometry(1, 1);
+      const plane = new Mesh(geometry, material.current);
+      plane.position.set(0.5, 0.5, 0);
+      scene.add(plane);
     };
 
     shaderSetup().catch(console.error);

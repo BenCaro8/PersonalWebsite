@@ -1,29 +1,36 @@
 import path from 'path';
 import webpack from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
-//create css file per js file: https://webpack.kr/plugins/mini-css-extract-plugin/
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // define plugins
 const plugins: webpack.WebpackPluginInstance[] = [
   new HTMLWebpackPlugin({
-    template: './public/index.html', // you have to have the template file
+    template: './public/index.html',
   }),
   new CopyPlugin({
     patterns: [
-      { from: './public/*.png', to: '.' }, //to the dist root directory
+      { from: './public/*.png', to: '.' },
       { from: './public/*.jpg', to: '.' },
       { from: './public/*.pdf', to: '.' },
       { from: './public/shaders/*.glsl', to: '.' },
-      { from: './public/textures/*.png', to: '.' },
-      { from: './public/textures/*.glb', to: '.' },
     ],
   }),
+  new CompressionPlugin(),
 ];
+
+if (isDevelopment) {
+  plugins.push(new ReactRefreshWebpackPlugin());
+  plugins.push(new BundleAnalyzerPlugin());
+} else {
+  plugins.push(new MiniCssExtractPlugin());
+}
 
 isDevelopment
   ? plugins.push(new ReactRefreshWebpackPlugin())
@@ -40,7 +47,7 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
-    publicPath: '/',
+    publicPath: './',
     // more configurations: https://webpack.js.org/configuration/
   },
   plugins,

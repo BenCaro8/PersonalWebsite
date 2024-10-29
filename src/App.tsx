@@ -1,14 +1,8 @@
-import { FC, useEffect } from 'react';
+import { FC, Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar, { NavOption as NavBarOption } from './Components/NavBar';
 import NavBarMobile from './Components/Mobile/NavBarMobile';
 import Footer from './Components/Footer';
-import Home from './Pages/Home';
-import Resume from './Pages/Resume';
-import Themes from './Pages/Themes';
-import About from './Pages/About';
-import Projects from './Pages/Projects';
-import Three from './Components/Three';
 import { useAppSelector, useAppDispatch } from './store';
 import {
   setIsMobile,
@@ -36,6 +30,13 @@ const navBarOptions: NavBarOption[] = [
   },
 ];
 
+const Home = lazy(() => import('./Pages/Home'));
+const Resume = lazy(() => import('./Pages/Resume'));
+const Themes = lazy(() => import('./Pages/Themes'));
+const About = lazy(() => import('./Pages/About'));
+const Projects = lazy(() => import('./Pages/Projects'));
+const Three = lazy(() => import('./Components/Three'));
+
 const App: FC = () => {
   const isMobile = useAppSelector((state) => state.settings.isMobile);
   const dispatch = useAppDispatch();
@@ -59,8 +60,6 @@ const App: FC = () => {
     dispatch(setInitialTheme());
   }, []);
 
-  // TODO: Create and add Mobile Component
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const NavBarComponent = isMobile ? (
     <NavBarMobile options={navBarOptions} />
   ) : (
@@ -71,14 +70,16 @@ const App: FC = () => {
     <BrowserRouter basename="/">
       <div className={styles.appContainer}>
         {NavBarComponent}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/themes" element={<Themes />} />
-          <Route path="/three" element={<Three />} />
-        </Routes>
+        <Suspense fallback={<div>Page is Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/themes" element={<Themes />} />
+            <Route path="/three" element={<Three />} />
+          </Routes>
+        </Suspense>
         <Footer />
       </div>
     </BrowserRouter>
