@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import Section from './Section';
 import Modal from './Modal';
 import Settings from './Settings';
+import { NavOption } from '../Utils/types';
 import styles from './styles/NavBar.scss';
 import classNames from 'classnames';
-
-export type NavOption = {
-  label: string;
-  url: string;
-};
 
 type Props = {
   options: NavOption[];
@@ -36,7 +32,7 @@ const NavBar: FC<Props> = ({ options }) => {
       >
         {options.map((option, index) => {
           return (
-            <Link key={index} className={styles.navLink} to={option.url}>
+            <Link key={index} className={styles.navLink} to={option.route}>
               {option.label}
             </Link>
           );

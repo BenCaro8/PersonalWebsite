@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import Section from '../Section';
 import Drawer from './Drawer';
 import Title from '../Title';
+import { NavOption } from '../../Utils/types';
 import styles from './styles/NavBarMobile.scss';
 import classNames from 'classnames';
-
-export type NavOption = {
-  label: string;
-  url: string;
-};
 
 type Props = {
   options: NavOption[];
@@ -81,7 +77,7 @@ const NavBarMobile: FC<Props> = ({ options }) => {
               key={index}
               className={styles.drawerOption}
               onClick={() => setIsOpen(false)}
-              to={option.url}
+              to={option.route}
             >
               {option.label}
               <svg viewBox="0 0 24 24" height="20px" width="20px">

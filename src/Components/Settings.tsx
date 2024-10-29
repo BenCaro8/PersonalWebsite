@@ -41,13 +41,13 @@ const Settings: FC<Props> = ({ onClose }) => {
               </a>
             );
           }
-          if (option?.url) {
+          if (option?.route) {
             return (
               <Link
                 key={index}
                 className={styles.settingsOption}
                 onClick={onClose}
-                to={option.url}
+                to={option.route}
               >
                 {option.label}
                 <svg viewBox="0 0 24 24" height="20px" width="20px">

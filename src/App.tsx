@@ -1,6 +1,7 @@
 import { FC, Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavBar, { NavOption as NavBarOption } from './Components/NavBar';
+import { FormattedMessage } from 'react-intl';
+import NavBar from './Components/NavBar';
 import NavBarMobile from './Components/Mobile/NavBarMobile';
 import Footer from './Components/Footer';
 import { useAppSelector, useAppDispatch } from './store';
@@ -9,26 +10,8 @@ import {
   setDefaultColors,
   setInitialTheme,
 } from './stores/settings';
+import { navOptions } from './Utils/types';
 import styles from './styles/App.scss';
-
-const navBarOptions: NavBarOption[] = [
-  {
-    label: 'Home',
-    url: '/',
-  },
-  {
-    label: 'About',
-    url: '/about',
-  },
-  {
-    label: 'Resume',
-    url: '/resume',
-  },
-  {
-    label: 'Projects',
-    url: '/projects',
-  },
-];
 
 const Home = lazy(() => import('./Pages/Home'));
 const Resume = lazy(() => import('./Pages/Resume'));
@@ -61,16 +44,23 @@ const App: FC = () => {
   }, []);
 
   const NavBarComponent = isMobile ? (
-    <NavBarMobile options={navBarOptions} />
+    <NavBarMobile options={navOptions} />
   ) : (
-    <NavBar options={navBarOptions} />
+    <NavBar options={navOptions} />
   );
 
   return (
     <BrowserRouter basename="/">
       <div className={styles.appContainer}>
         {NavBarComponent}
-        <Suspense fallback={<div>Page is Loading...</div>}>
+        <Suspense
+          fallback={
+            <FormattedMessage
+              id="App.pageLoading"
+              defaultMessage="Page is Loading..."
+            />
+          }
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
