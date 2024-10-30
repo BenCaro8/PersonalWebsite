@@ -9,7 +9,7 @@ type BackgroundColor = ThemeColor | 'white' | 'none';
 
 type Props = {
   children?: ReactNode;
-  title?: string;
+  title?: ReactNode;
   link?: string;
   imgSrc?: string;
   imgRight?: boolean;

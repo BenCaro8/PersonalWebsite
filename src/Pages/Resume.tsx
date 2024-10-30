@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import Title from '../Components/Title';
@@ -10,7 +11,10 @@ const Resume: FC = () => {
       <Section backgroundColor="primary-accent-color" center>
         <a href="/public/Resume.pdf" download>
           <Title fontFamily="Gugi" size="medium" center>
-            Download Resume as PDF
+            <FormattedMessage
+              id="Resume.download"
+              defaultMessage="Download Resume as PDF"
+            />
           </Title>
         </a>
       </Section>

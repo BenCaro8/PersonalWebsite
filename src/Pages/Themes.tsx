@@ -10,6 +10,7 @@ import {
   setNumShapes,
 } from '../stores/settings';
 import { ColorState } from '../Utils/helpers';
+import { FormattedMessage } from 'react-intl';
 
 const Themes: FC = () => {
   const isMobile = useAppSelector((state) => state.settings.isMobile);
@@ -47,12 +48,17 @@ const Themes: FC = () => {
     <>
       <Section backgroundColor="primary-accent-color" height={200}>
         <Title fontFamily="Gugi" size="medium" center>
-          Themes:
+          <FormattedMessage id="Themes.title" defaultMessage="Themes:" />
         </Title>
       </Section>
       <Section flexCol showAnimatedBackground>
         <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Background Color:</div>
+          <div className="text-white mb-2">
+            <FormattedMessage
+              id="Themes.bgColor"
+              defaultMessage="Background Color:"
+            />
+          </div>
           <ChromePicker
             color={colors['--primary-bg-color']}
             onChange={(color) => onColorChange(color, '--primary-bg-color')}
@@ -66,7 +72,12 @@ const Themes: FC = () => {
         gradient="secondary-accent-color"
       >
         <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Gradient Color:</div>
+          <div className="text-white mb-2">
+            <FormattedMessage
+              id="Themes.gradientColor"
+              defaultMessage="Gradient Color:"
+            />
+          </div>
 
           <ChromePicker
             color={colors['--primary-gradient-color']}
@@ -82,7 +93,12 @@ const Themes: FC = () => {
         backgroundColor="primary-accent-color"
       >
         <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Accent Color:</div>
+          <div className="text-white mb-2">
+            <FormattedMessage
+              id="Themes.accentColor"
+              defaultMessage="Accent Color:"
+            />
+          </div>
 
           <ChromePicker
             color={colors['--primary-accent-color']}
@@ -96,7 +112,12 @@ const Themes: FC = () => {
         backgroundColor="secondary-accent-color"
       >
         <div className="text-white mt-10 mb-10">
-          <div className="text-white mb-2">Second Accent Color:</div>
+          <div className="text-white mb-2">
+            <FormattedMessage
+              id="Themes.secondAccentColor"
+              defaultMessage="Second Accent Color:"
+            />
+          </div>
 
           <ChromePicker
             color={colors['--secondary-accent-color']}
@@ -109,7 +130,10 @@ const Themes: FC = () => {
       <Section flexCol style="py-5" showAnimatedBackground>
         <div className="mb-10">
           <div className="text-white flex flex-col mb-2">
-            Number of Background Shapes:
+            <FormattedMessage
+              id="Themes.bgShapeNum"
+              defaultMessage="Number of Background Shapes:"
+            />
           </div>
           <input
             type="text"
@@ -118,7 +142,7 @@ const Themes: FC = () => {
             className="pl-2"
           />
           <button onClick={handleApplyClick} className="text-white ml-2">
-            Apply
+            <FormattedMessage id="Themes.apply" defaultMessage="Apply" />
           </button>
         </div>
         <div className="mb-10">
@@ -126,7 +150,7 @@ const Themes: FC = () => {
             onClick={() => dispatch(resetToDefaultTheme())}
             className="text-white ml-2"
           >
-            Reset
+            <FormattedMessage id="Themes.reset" defaultMessage="Reset" />
           </button>
         </div>
       </Section>

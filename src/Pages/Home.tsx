@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { defineMessage, FormattedMessage } from 'react-intl';
 import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import Card from '../Components/Card';
@@ -9,38 +10,56 @@ const Home: FC = () => {
   return (
     <>
       <Section backgroundColor="primary-accent-color">
-        <TypingAnimation text="Ben Caro: Software Engineer" />
+        <TypingAnimation
+          message={defineMessage({
+            id: 'Home.typingAnimation',
+            defaultMessage: 'Ben Caro: Software Engineer',
+          })}
+        />
         <img src="/public/self.png" className={styles.selfie} />
       </Section>
       <div className="mt-auto mb-auto">
         <Section style="py-5" center showAnimatedBackground flexCol>
           <Card
             center
-            title="About Me"
+            title={
+              <FormattedMessage id="Home.about" defaultMessage="About Me" />
+            }
             borderWidth={0}
             borderRadius={10}
             backgroundColor="secondary-accent-color"
             gradient="primary-gradient-color"
             link="/about"
           >
-            <p>Learn about me, my interests and professional experience!</p>
+            <p>
+              <FormattedMessage
+                id="Home.about.desc"
+                defaultMessage="Learn about me, my interests and professional experience!"
+              />
+            </p>
           </Card>
           <Card
             center
-            title="My Résumé"
+            title={
+              <FormattedMessage id="Home.resume" defaultMessage="My Resume" />
+            }
             borderWidth={0}
             borderRadius={10}
             backgroundColor="secondary-accent-color"
             link="/resume"
           >
             <p>
-              My resume for anyone interested in what I&apos;ve done
-              professionally in a concise format.
+              <FormattedMessage
+                id="Home.resume.desc"
+                defaultMessage="My resume for anyone interested in what I've done professionally in a concise format."
+              />
             </p>
           </Card>
           <Card
             center
-            title="Projects"
+            title={
+              <FormattedMessage id="Home.projects" defaultMessage="Projects" />
+            }
             borderWidth={0}
             borderRadius={10}
             backgroundColor="primary-gradient-color"
@@ -48,20 +67,27 @@ const Home: FC = () => {
             link="/projects"
           >
             <p>
-              Take a look at the projects that I&apos;ve done and am currently
-              working on.
+              <FormattedMessage
+                id="Home.projects.desc"
+                defaultMessage="Take a look at the projects that I've done and am currently working on."
+              />
             </p>
           </Card>
           <Card
             center
-            title="Themes"
+            title={
+              <FormattedMessage id="Home.themes" defaultMessage="Themes" />
+            }
             borderWidth={0}
             borderRadius={10}
             backgroundColor="primary-accent-color"
             link="/themes"
           >
             <p>
-              Change the look of this website by playing around with the themes.
+              <FormattedMessage
+                id="Home.themes.desc"
+                defaultMessage="Change the look of this website by playing around with the themes."
+              />
             </p>
           </Card>
         </Section>

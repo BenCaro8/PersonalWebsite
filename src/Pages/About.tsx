@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import Title from '../Components/Title';
@@ -15,7 +16,7 @@ const About: FC = () => {
         flexCol
       >
         <Title fontFamily="Gugi" size="large">
-          About Me
+          <FormattedMessage id="About.title" defaultMessage="About Me" />
         </Title>
         <Section style="py-5" center backgroundColor="none">
           <Card
@@ -25,10 +26,17 @@ const About: FC = () => {
             borderWidth={0}
             borderRadius={10}
           >
-            <p>I&apos;m originally from Saratoga Springs, NY.</p>
             <p>
-              I attended SUNY Oswego and graduated in December 2019 with a BA in
-              Computer Science.
+              <FormattedMessage
+                id="About.fromDesc.1"
+                defaultMessage="I'm originally from Saratoga Springs, NY."
+              />
+            </p>
+            <p>
+              <FormattedMessage
+                id="About.fromDesc.2"
+                defaultMessage="I attended SUNY Oswego and graduated in December 2019 with a BA in Computer Science."
+              />
             </p>
           </Card>
         </Section>
@@ -41,9 +49,10 @@ const About: FC = () => {
             borderWidth={0}
             borderRadius={10}
           >
-            I love programming and dabble in most everything from game
-            programming, shader development, all the way to my professional
-            skills in the front-end tech stack using Typescript and React!
+            <FormattedMessage
+              id="About.programmingDesc"
+              defaultMessage="I love programming and dabble in most everything from game programming, shader development, all the way to my professional skills in the front-end tech stack using Typescript and React!"
+            />
           </Card>
         </Section>
       </Section>
@@ -63,10 +72,17 @@ const About: FC = () => {
             borderRadius={10}
           >
             <p>
-              I also enjoy all parts of the stack; back-end and dev-ops
-              included.
+              <FormattedMessage
+                id="About.toolsDesc.1"
+                defaultMessage="I also enjoy all parts of the stack; back-end and dev-ops included."
+              />
             </p>
-            <p>Shout out to AWS, Docker and Kubernetes!</p>
+            <p>
+              <FormattedMessage
+                id="About.toolsDesc.2"
+                defaultMessage="Shout out to AWS, Docker and Kubernetes!"
+              />
+            </p>
           </Card>
         </Section>
       </Section>

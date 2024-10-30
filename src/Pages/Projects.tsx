@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import AnimatedBackground from '../Components/AnimatedBackground';
 import Section from '../Components/Section';
 import Title from '../Components/Title';
@@ -9,15 +10,22 @@ const Projects: FC = () => {
     <div className="mt-auto mb-auto">
       <Section backgroundColor="primary-accent-color" flexCol>
         <Title fontFamily="Gugi" size="medium" center>
-          This Website:
+          <FormattedMessage
+            id="Projects.title"
+            defaultMessage="This Website:"
+          />
         </Title>
         <div className={styles.content}>
-          Checkout the code for this website! It&apos;s public on my Github. You
-          can clone it and use it as a base or take something from it you like,
-          doesn&apos;t matter to me!
+          <FormattedMessage
+            id="Projects.desc.1"
+            defaultMessage="Checkout the code for this website! It's public on my Github. You can clone it and use it as a base or take something from it you like, doesn't matter to me!"
+          />
         </div>
         <div className={styles.content}>
-          This website uses: React, Typescript, Redux, SCSS and Tailwind
+          <FormattedMessage
+            id="Projects.desc.2"
+            defaultMessage="This website uses: React, Typescript, Redux, SCSS and Tailwind"
+          />
         </div>
         <a
           href="https://github.com/BenCaro8/PersonalWebsite"
@@ -29,7 +37,10 @@ const Projects: FC = () => {
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
             className="h-4 mr-1"
           />
-          My Website&apos;s Github!
+          <FormattedMessage
+            id="Projects.desc.3"
+            defaultMessage="My Website's Github!"
+          />
         </a>
       </Section>
       <AnimatedBackground />
