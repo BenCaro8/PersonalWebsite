@@ -25,7 +25,7 @@ const root = createRoot(container!);
 
 const locale = navigator.language.split('-')[0] || 'en';
 
-getLocaleMessages('es').then((localeMessages) => {
+getLocaleMessages(locale).then((localeMessages) => {
   root.render(
     <Provider store={store}>
       <IntlProvider
