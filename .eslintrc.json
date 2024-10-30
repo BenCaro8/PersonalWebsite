@@ -17,10 +17,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "prettier", "formatjs"],
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error", "single"],
+    "formatjs/no-offset": "error",
+    "formatjs/enforce-id": "error",
+    "formatjs/no-multiple-whitespaces": "error",
+    "formatjs/prefer-formatted-message": "error",
     "prettier/prettier": ["error"],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/semi": ["error"],
