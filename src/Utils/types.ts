@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, MessageDescriptor } from 'react-intl';
 
 export const ROUTE_HOME = '/' as const;
 export const ROUTE_ABOUT = '/about' as const;
@@ -19,40 +19,63 @@ export const ROUTES = [
 
 export type Route = (typeof ROUTES)[number];
 
+const routeMessages = defineMessages({
+  home: {
+    id: 'Routes.home',
+    defaultMessage: 'Home',
+  },
+  about: {
+    id: 'Routes.about',
+    defaultMessage: 'About',
+  },
+  resume: {
+    id: 'Routes.resume',
+    defaultMessage: 'Resume',
+  },
+  projects: {
+    id: 'Routes.projects',
+    defaultMessage: 'Projects',
+  },
+  themes: {
+    id: 'Routes.themes',
+    defaultMessage: 'Themes',
+  },
+});
+
 export type NavOption = {
-  label: ReactNode;
+  label: MessageDescriptor;
   route: Route;
 };
 
 export const navOptions: NavOption[] = [
   {
-    label: <FormattedMessage id="Routes.home" defaultMessage="Home" />,
+    label: routeMessages.home,
     route: ROUTE_HOME,
   },
   {
-    label: <FormattedMessage id="Routes.about" defaultMessage="About" />,
+    label: routeMessages.about,
     route: ROUTE_ABOUT,
   },
   {
-    label: <FormattedMessage id="Routes.resume" defaultMessage="Resume" />,
+    label: routeMessages.resume,
     route: ROUTE_RESUME,
   },
   {
-    label: <FormattedMessage id="Routes.projects" defaultMessage="Projects" />,
+    label: routeMessages.projects,
     route: ROUTE_PROJECTS,
   },
 ] as const;
 
 export type SettingsOption = {
-  label: ReactNode;
+  label: MessageDescriptor;
   route?: string;
   component?: ReactNode;
 };
 
 export const settingsOptions: SettingsOption[] = [
   {
-    label: <FormattedMessage id="Routes.themes" defaultMessage="Themes" />,
-    route: '/themes',
+    label: routeMessages.themes,
+    route: ROUTE_THEMES,
   },
 ] as const;
 

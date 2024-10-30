@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import Modal from './Modal';
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const NavBar: FC<Props> = ({ options }) => {
+  const intl = useIntl();
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [topOfPage, setTopOfPage] = useState(window.scrollY === 0);
   const navBarHeight = 50;
@@ -33,7 +35,7 @@ const NavBar: FC<Props> = ({ options }) => {
         {options.map((option, index) => {
           return (
             <Link key={index} className={styles.navLink} to={option.route}>
-              {option.label}
+              {intl.formatMessage(option.label)}
             </Link>
           );
         })}

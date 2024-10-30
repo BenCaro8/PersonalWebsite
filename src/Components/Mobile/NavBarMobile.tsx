@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Section from '../Section';
 import Drawer from './Drawer';
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const NavBarMobile: FC<Props> = ({ options }) => {
+  const intl = useIntl();
   const [isOpen, setIsOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [topOfPage, setTopOfPage] = useState(window.scrollY === 0);
@@ -79,7 +81,7 @@ const NavBarMobile: FC<Props> = ({ options }) => {
               onClick={() => setIsOpen(false)}
               to={option.route}
             >
-              {option.label}
+              {intl.formatMessage(option.label)}
               <svg viewBox="0 0 24 24" height="20px" width="20px">
                 <path
                   fillRule="evenodd"

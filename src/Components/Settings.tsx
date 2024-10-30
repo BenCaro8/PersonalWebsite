@@ -1,4 +1,5 @@
 import { FC, ReactNode, useState } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Section from './Section';
 import Title from './Title';
@@ -10,6 +11,7 @@ type Props = {
 };
 
 const Settings: FC<Props> = ({ onClose }) => {
+  const intl = useIntl();
   const [selectedSettingsPage, setSelectedSettingsPage] =
     useState<ReactNode | null>(null);
 
@@ -17,7 +19,7 @@ const Settings: FC<Props> = ({ onClose }) => {
     <>
       <Section backgroundColor="white" height={70} divisionBar>
         <Title size="small" color="black" center>
-          Settings:
+          <FormattedMessage id="Settings.title" defaultMessage="Settings:" />
         </Title>
       </Section>
       <Section backgroundColor="white" flexCol>
@@ -29,7 +31,7 @@ const Settings: FC<Props> = ({ onClose }) => {
                 className={styles.settingsOption}
                 onClick={() => setSelectedSettingsPage(option.component)}
               >
-                {option.label}
+                {intl.formatMessage(option.label)}
                 <svg viewBox="0 0 24 24" height="20px" width="20px">
                   <path
                     fillRule="evenodd"
@@ -49,7 +51,7 @@ const Settings: FC<Props> = ({ onClose }) => {
                 onClick={onClose}
                 to={option.route}
               >
-                {option.label}
+                {intl.formatMessage(option.label)}
                 <svg viewBox="0 0 24 24" height="20px" width="20px">
                   <path
                     fillRule="evenodd"
