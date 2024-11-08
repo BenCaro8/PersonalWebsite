@@ -21,11 +21,15 @@ const getLocaleMessages = async (locale: string) => {
 };
 
 const container = document.getElementById('root');
+
+// Only non-null assertion as It'll always exist
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = createRoot(container!);
 
 const locale = navigator.language.split('-')[0] || 'en';
 
-getLocaleMessages(locale).then((localeMessages) => {
+// TODO: When nationalization is implemented and translations kept up with, insert locale.
+getLocaleMessages('en').then((localeMessages) => {
   root.render(
     <Provider store={store}>
       <IntlProvider
