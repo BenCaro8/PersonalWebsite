@@ -25,7 +25,12 @@
     "formatjs/enforce-id": "error",
     "formatjs/no-multiple-whitespaces": "error",
     "formatjs/prefer-formatted-message": "error",
-    "prettier/prettier": ["warn"],
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/consistent-type-imports": "off",
